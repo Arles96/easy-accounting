@@ -1,0 +1,1 @@
+Aqui ira todas las acciones de redux
