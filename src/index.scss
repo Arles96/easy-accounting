@@ -1,0 +1,10 @@
+.card-grid {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-height: 1000px;
+    div {
+      margin: 0 1rem 1rem 0;
+      text-align: center;
+    }
+}
