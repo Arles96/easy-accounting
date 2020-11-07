@@ -19,7 +19,7 @@ import Index from "views/Index.js";
 import Profile from "views/examples/Profile.js";
 import Tables from "views/examples/Tables.js";
 import Icons from "views/examples/Icons.js";
-import Resultados from "views/resultados/resultados.js";
+import Resultados from "views/resultados/Resultados.js";
 
 var routes = [
   {

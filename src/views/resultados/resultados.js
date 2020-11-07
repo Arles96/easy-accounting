@@ -16,30 +16,151 @@
 
 */
 import React from "react";
-import '../../index.scss';
 
 // reactstrap components
-import {
-  Badge,
-  Card,
-  CardHeader,
-  CardFooter,
-  DropdownMenu,
-  DropdownItem,
-  UncontrolledDropdown,
-  DropdownToggle,
-  Media,
-  Pagination,
-  PaginationItem,
-  PaginationLink,
-  Progress,
-  Table,
-  Container,
-  Row,
-  UncontrolledTooltip
-} from "reactstrap";
+import { Card, CardHeader, Table, Container, Row } from "reactstrap";
 // core components
 import Header from "components/Headers/Header.js";
+import TablaT from "./TablaT.js";
+
+const testData = [
+  {
+    cuenta: "Cuenta X",
+    debe: [
+      {
+        partida: "part #",
+        valor: 5000,
+      },
+      {
+        partida: "part #",
+        valor: 5000,
+      },
+      {
+        partida: "part #",
+        valor: 5000,
+      },
+      {
+        partida: "part #",
+        valor: 5000,
+      },
+      {
+        partida: "part #",
+        valor: 5000,
+      },
+    ],
+    haber: [
+      {
+        partida: "part #",
+        valor: 5000,
+      },
+      {
+        partida: "part #",
+        valor: 5000,
+      },
+      {
+        partida: "part #",
+        valor: 5000,
+      },
+    ],
+  },
+  {
+    cuenta: "Cuenta Y",
+    debe: [
+      {
+        partida: "part #",
+        valor: 5000,
+      },
+      {
+        partida: "part #",
+        valor: 5000,
+      },
+      {
+        partida: "part #",
+        valor: 5000,
+      },
+      {
+        partida: "part #",
+        valor: 5000,
+      },
+      {
+        partida: "part #",
+        valor: 5000,
+      },
+    ],
+    haber: [
+      {
+        partida: "part #",
+        valor: 53000,
+      },
+      {
+        partida: "part #",
+        valor: 5000,
+      },
+      {
+        partida: "part #",
+        valor: 5000,
+      },
+    ],
+  },
+  {
+    cuenta: "Cuenta Z",
+    debe: [
+      {
+        partida: "part #",
+        valor: 1000,
+      },
+      {
+        partida: "part #",
+        valor: 5000,
+      },
+      {
+        partida: "part #",
+        valor: 5000,
+      },
+      {
+        partida: "part #",
+        valor: 5000,
+      },
+    ],
+    haber: [
+      {
+        partida: "part #",
+        valor: 5000,
+      },
+      {
+        partida: "part #",
+        valor: 5000,
+      },
+      {
+        partida: "part #",
+        valor: 5000,
+      },
+    ],
+  },
+  {
+    cuenta: "Cuenta A",
+    debe: [
+      {
+        partida: "part #",
+        valor: 5000,
+      },
+      {
+        partida: "part #",
+        valor: 5000,
+      },
+    ],
+    haber: [
+      {
+        partida: "part #",
+        valor: 5000,
+      },
+      {
+        partida: "part #",
+        valor: 5000,
+      },
+    ],
+  }
+];
 
 class Tables extends React.Component {
   render() {
@@ -47,727 +168,13 @@ class Tables extends React.Component {
       <>
         <Header />
         {/* Page content */}
-        <Container  fluid>
+        <Container fluid>
           {/* Table */}
           <Row>
             <div className="card-grid">
-              <div className="table-panel">
-                <Card className="table-card">
-                  <CardHeader >
-                    <h3 >Cuentas T</h3>
-                  </CardHeader>
-                  <Table  responsive>
-                    <thead >
-                      <tr>
-                        <th scope="col">Débito</th>
-                        <th scope="col">Crédito</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </Card>
-              </div>
-              <div className="table-panel">
-                <Card className="table-card">
-                  <CardHeader >
-                    <h3 >Cuentas T</h3>
-                  </CardHeader>
-                  <Table  responsive>
-                    <thead >
-                      <tr>
-                        <th scope="col">Débito</th>
-                        <th scope="col">Crédito</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </Card>
-              </div>
-              <div className="table-panel">
-                <Card className="table-card">
-                  <CardHeader >
-                    <h3 >Cuentas T</h3>
-                  </CardHeader>
-                  <Table  responsive>
-                    <thead >
-                      <tr>
-                        <th scope="col">Débito</th>
-                        <th scope="col">Crédito</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </Card>
-              </div>
-              <div className="table-panel">
-                <Card className="table-card">
-                  <CardHeader >
-                    <h3 >Cuentas T</h3>
-                  </CardHeader>
-                  <Table  responsive>
-                    <thead >
-                      <tr>
-                        <th scope="col">Débito</th>
-                        <th scope="col">Crédito</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </Card>
-              </div>
-              <div className="table-panel">
-                <Card className="table-card">
-                  <CardHeader >
-                    <h3 >Cuentas T</h3>
-                  </CardHeader>
-                  <Table  responsive>
-                    <thead >
-                      <tr>
-                        <th scope="col">Débito</th>
-                        <th scope="col">Crédito</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </Card>
-              </div>
-              <div className="table-panel">
-                <Card className="table-card">
-                  <CardHeader >
-                    <h3 >Cuentas T</h3>
-                  </CardHeader>
-                  <Table  responsive>
-                    <thead >
-                      <tr>
-                        <th scope="col">Débito</th>
-                        <th scope="col">Crédito</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </Card>
-              </div>
-              <div className="table-panel">
-                <Card className="table-card">
-                  <CardHeader >
-                    <h3 >Cuentas T</h3>
-                  </CardHeader>
-                  <Table  responsive>
-                    <thead >
-                      <tr>
-                        <th scope="col">Débito</th>
-                        <th scope="col">Crédito</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </Card>
-              </div>
-              <div className="table-panel">
-                <Card className="table-card">
-                  <CardHeader >
-                    <h3 >Cuentas T</h3>
-                  </CardHeader>
-                  <Table  responsive>
-                    <thead >
-                      <tr>
-                        <th scope="col">Débito</th>
-                        <th scope="col">Crédito</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </Card>
-              </div>
-              <div className="table-panel">
-                <Card className="table-card">
-                  <CardHeader >
-                    <h3 >Cuentas T</h3>
-                  </CardHeader>
-                  <Table  responsive>
-                    <thead >
-                      <tr>
-                        <th scope="col">Débito</th>
-                        <th scope="col">Crédito</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </Card>
-              </div>
-              <div className="table-panel">
-                <Card className="table-card">
-                  <CardHeader >
-                    <h3 >Cuentas T</h3>
-                  </CardHeader>
-                  <Table  responsive>
-                    <thead >
-                      <tr>
-                        <th scope="col">Débito</th>
-                        <th scope="col">Crédito</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </Card>
-              </div>
-              <div className="table-panel">
-                <Card className="table-card">
-                  <CardHeader >
-                    <h3 >Cuentas T</h3>
-                  </CardHeader>
-                  <Table  responsive>
-                    <thead >
-                      <tr>
-                        <th scope="col">Débito</th>
-                        <th scope="col">Crédito</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </Card>
-              </div>
-              <div className="table-panel">
-                <Card className="table-card">
-                  <CardHeader >
-                    <h3 >Cuentas T</h3>
-                  </CardHeader>
-                  <Table  responsive>
-                    <thead >
-                      <tr>
-                        <th scope="col">Débito</th>
-                        <th scope="col">Crédito</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </Card>
-              </div>
-              <div className="table-panel">
-                <Card className="table-card">
-                  <CardHeader >
-                    <h3 >Cuentas T</h3>
-                  </CardHeader>
-                  <Table  responsive>
-                    <thead >
-                      <tr>
-                        <th scope="col">Débito</th>
-                        <th scope="col">Crédito</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </Card>
-              </div>
-              <div className="table-panel">
-                <Card className="table-card">
-                  <CardHeader >
-                    <h3 >Cuentas T</h3>
-                  </CardHeader>
-                  <Table  responsive>
-                    <thead >
-                      <tr>
-                        <th scope="col">Débito</th>
-                        <th scope="col">Crédito</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </Card>
-              </div>
-              <div className="table-panel">
-                <Card className="table-card">
-                  <CardHeader >
-                    <h3 >Cuentas T</h3>
-                  </CardHeader>
-                  <Table  responsive>
-                    <thead >
-                      <tr>
-                        <th scope="col">Débito</th>
-                        <th scope="col">Crédito</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </Card>
-              </div>
-              <div className="table-panel">
-                <Card className="table-card">
-                  <CardHeader >
-                    <h3 >Cuentas T</h3>
-                  </CardHeader>
-                  <Table  responsive>
-                    <thead >
-                      <tr>
-                        <th scope="col">Débito</th>
-                        <th scope="col">Crédito</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </Card>
-              </div>
-              <div className="table-panel">
-                <Card className="table-card">
-                  <CardHeader >
-                    <h3 >Cuentas T</h3>
-                  </CardHeader>
-                  <Table  responsive>
-                    <thead >
-                      <tr>
-                        <th scope="col">Débito</th>
-                        <th scope="col">Crédito</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </Card>
-              </div>
-              <div className="table-panel">
-                <Card className="table-card">
-                  <CardHeader >
-                    <h3 >Cuentas T</h3>
-                  </CardHeader>
-                  <Table  responsive>
-                    <thead >
-                      <tr>
-                        <th scope="col">Débito</th>
-                        <th scope="col">Crédito</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </Card>
-              </div>
-              <div className="table-panel">
-                <Card className="table-card">
-                  <CardHeader >
-                    <h3 >Cuentas T</h3>
-                  </CardHeader>
-                  <Table  responsive>
-                    <thead >
-                      <tr>
-                        <th scope="col">Débito</th>
-                        <th scope="col">Crédito</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </Card>
-              </div>
-              <div className="table-panel">
-                <Card className="table-card">
-                  <CardHeader >
-                    <h3 >Cuentas T</h3>
-                  </CardHeader>
-                  <Table  responsive>
-                    <thead >
-                      <tr>
-                        <th scope="col">Débito</th>
-                        <th scope="col">Crédito</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </Card>
-              </div>
-              <div className="table-panel">
-                <Card className="table-card">
-                  <CardHeader >
-                    <h3 >Cuentas T</h3>
-                  </CardHeader>
-                  <Table  responsive>
-                    <thead >
-                      <tr>
-                        <th scope="col">Débito</th>
-                        <th scope="col">Crédito</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                      <tr>
-                        <td>$2,500 USD</td>
-                        <td>$3,000 USD</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </Card>
-              </div>
+              {testData.map((cuenta)=>(
+                <TablaT key={cuenta.cuenta + "tt"} cuenta={cuenta.cuenta} debe={cuenta.debe} haber={cuenta.haber}/>
+              ))}
             </div>
           </Row>
         </Container>
