@@ -218,7 +218,6 @@ class Tables extends React.Component {
   render() {
     return (
       <>
-        {console.log(this.state.activeTab)}
         <Header />
         <Container fluid className="botones-resultados">
           <Button
@@ -247,7 +246,7 @@ class Tables extends React.Component {
           </Button>
         </Container>
 
-        <TabContent activeTab={this.state.activeTab}>
+        {/* <TabContent activeTab={this.state.activeTab}>
           <TabPane tabId="1">
             <Container fluid>
               <div className="card-grid">
@@ -278,7 +277,21 @@ class Tables extends React.Component {
               </div>
             </Container>
           </TabPane>
-        </TabContent>
+        </TabContent> */}
+        <Container fluid>
+          <div className="card-grid">
+            
+               {this.state.arrCuentas.map((datosTabla) => (
+                  <TablaT
+                    key={datosTabla.cuenta + "tt"}
+                    datosTabla={datosTabla}
+                  />
+                ))}
+              
+              <BalanceGeneral arrCuentas={this.state.arrCuentas} />
+              <EstadoResultado />
+          </div>
+        </Container>
       </>
     );
   }
