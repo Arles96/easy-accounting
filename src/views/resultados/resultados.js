@@ -18,11 +18,12 @@
 import React from "react";
 
 // reactstrap components
-import { Container, Row } from "reactstrap";
+import { Container, Button, TabContent, TabPane } from "reactstrap";
 // core components
 import Header from "components/Headers/Header.js";
 import TablaT from "../../components/resultados/TablaT";
 import BalanceGeneral from "../../components/resultados/BalanceGeneral";
+import EstadoResultado from "components/resultados/EstadoResultado";
 
 const testData = [
   {
@@ -160,18 +161,17 @@ const testData = [
         valor: 5000,
       },
     ],
-  }
+  },
 ];
 
 class Tables extends React.Component {
-
   constructor() {
     super();
     //const { cuentas } = props;
 
     const cuentas = testData;
 
-    const arrCuentas = cuentas.map(({cuenta, debe, haber})=>{
+    const arrCuentas = cuentas.map(({ cuenta, debe, haber }) => {
       const filas = [];
       let contDebe = 0;
       let contHaber = 0;
@@ -196,34 +196,89 @@ class Tables extends React.Component {
       }
 
       const total = totalDebe - totalHaber;
-      return ({
+      return {
         cuenta,
         filas,
         totalDebe,
         totalHaber,
-        total
-      })
+        total,
+      };
     });
 
-    arrCuentas.forEach((t)=>console.log(t))
+    this.toggle = this.toggle.bind(this);
+    this.state = { arrCuentas, activeTab: 1 };
+  }
 
-    this.state = {arrCuentas};
+  toggle(tab) {
+    if (this.state.activeTab !== tab) {
+      this.setState({ activeTab: tab });
+    }
   }
 
   render() {
     return (
       <>
+        {console.log(this.state.activeTab)}
         <Header />
-        <Container fluid>
-          <Row>
-            <div className="card-grid">
-              {this.state.arrCuentas.map((datosTabla)=>(
-                <TablaT key={datosTabla.cuenta + "tt"} datosTabla={datosTabla}/>
-              ))}
-              <BalanceGeneral arrCuentas={this.state.arrCuentas}/>
-            </div>
-          </Row>
+        <Container fluid className="botones-resultados">
+          <Button
+            color="primary"
+            // href="#pablo"
+            onClick={() => this.toggle(1)}
+            size="md"
+          >
+            Tablas T
+          </Button>
+          <Button
+            color="primary"
+            // href="#pablo"
+            onClick={() => this.toggle(2)}
+            size="md"
+          >
+            Balance General
+          </Button>
+          <Button
+            color="primary"
+            // href="#pablo"
+            onClick={() => this.toggle(3)}
+            size="md"
+          >
+            Estado de Resultados
+          </Button>
         </Container>
+
+        <TabContent activeTab={this.state.activeTab}>
+          <TabPane tabId="1">
+            <Container fluid>
+              <div className="card-grid">
+                {this.state.activeTab === 1
+                  ? this.state.arrCuentas.map((datosTabla) => (
+                      <TablaT
+                        key={datosTabla.cuenta + "tt"}
+                        datosTabla={datosTabla}
+                      />
+                    ))
+                  : null}
+              </div>
+            </Container>
+          </TabPane>
+          <TabPane tabId="2">
+            <Container fluid>
+              <div className="card-grid">
+                {this.state.activeTab === 2 ? (
+                  <BalanceGeneral arrCuentas={this.state.arrCuentas} />
+                ) : null}
+              </div>
+            </Container>
+          </TabPane>
+          <TabPane tabId="3">
+            <Container fluid>
+              <div className="card-grid">
+                {this.state.activeTab === 3 ? <EstadoResultado /> : null}
+              </div>
+            </Container>
+          </TabPane>
+        </TabContent>
       </>
     );
   }

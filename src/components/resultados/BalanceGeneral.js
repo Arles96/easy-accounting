@@ -38,7 +38,7 @@ const BalanceGeneral = ({ arrCuentas }) => {
         <CardHeader>
           <h3>Balance General</h3>
         </CardHeader>
-        <Table responsive className="tabla-t">
+        <Table responsive>
           <thead>
             <tr>
               <th scope="col" rowSpan="2" className="multiple-row-cell-center">
