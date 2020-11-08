@@ -18,10 +18,11 @@
 import React from "react";
 
 // reactstrap components
-import { Card, CardHeader, Table, Container, Row } from "reactstrap";
+import { Container, Row } from "reactstrap";
 // core components
 import Header from "components/Headers/Header.js";
-import TablaT from "./TablaT.js";
+import TablaT from "../../components/resultados/TablaT";
+import BalanceGeneral from "../../components/resultados/BalanceGeneral";
 
 const testData = [
   {
@@ -163,18 +164,63 @@ const testData = [
 ];
 
 class Tables extends React.Component {
+
+  constructor() {
+    super();
+    //const { cuentas } = props;
+
+    const cuentas = testData;
+
+    const arrCuentas = cuentas.map(({cuenta, debe, haber})=>{
+      const filas = [];
+      let contDebe = 0;
+      let contHaber = 0;
+      let totalDebe = 0;
+      let totalHaber = 0;
+      while (debe[contDebe] !== undefined || haber[contHaber] !== undefined) {
+        let newFila = {
+          debe: null,
+          haber: null,
+        };
+        if (debe[contDebe] !== undefined) {
+          newFila.debe = debe[contDebe];
+          totalDebe += debe[contDebe].valor;
+        }
+        if (haber[contHaber] !== undefined) {
+          newFila.haber = haber[contHaber];
+          totalHaber += haber[contHaber].valor;
+        }
+        filas.push(newFila);
+        contHaber++;
+        contDebe++;
+      }
+
+      const total = totalDebe - totalHaber;
+      return ({
+        cuenta,
+        filas,
+        totalDebe,
+        totalHaber,
+        total
+      })
+    });
+
+    arrCuentas.forEach((t)=>console.log(t))
+
+    this.state = {arrCuentas};
+  }
+
   render() {
     return (
       <>
         <Header />
-        {/* Page content */}
         <Container fluid>
-          {/* Table */}
           <Row>
             <div className="card-grid">
-              {testData.map((cuenta)=>(
-                <TablaT key={cuenta.cuenta + "tt"} cuenta={cuenta.cuenta} debe={cuenta.debe} haber={cuenta.haber}/>
+              {this.state.arrCuentas.map((datosTabla)=>(
+                <TablaT key={datosTabla.cuenta + "tt"} datosTabla={datosTabla}/>
               ))}
+              <BalanceGeneral arrCuentas={this.state.arrCuentas}/>
             </div>
           </Row>
         </Container>

@@ -52,7 +52,7 @@
 }
 
 .tabla-t td {
-  border-top: 0px !important;
+  border-top: 0px;
 }
 
 .bottom-t {
@@ -62,4 +62,21 @@
 
 .total-t {
   border-bottom: 5px double;
+}
+
+.balance-general-panel {
+  width: 100%;
+}
+
+.multiple-row-cell-center {
+  vertical-align: middle !important;
+  text-align: center !important;
+}
+
+.left-border-cell {
+  border-left: 1px solid #e9ecef;
+}
+
+.balance-totales-cells {
+  border-top: 5px double  !important;
 }

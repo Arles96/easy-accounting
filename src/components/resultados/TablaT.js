@@ -1,6 +1,7 @@
 import React from "react";
 
-import { Card, CardHeader, Table, Container, Row } from "reactstrap";
+import { Card, CardHeader, Table } from "reactstrap";
+import { toPisto } from "../../components/utils";
 
 // debe / haber
 // {
@@ -8,31 +9,8 @@ import { Card, CardHeader, Table, Container, Row } from "reactstrap";
 //   valor: ""
 // }
 
-const TablaT = ({ cuenta, debe, haber }) => {
-  const filas = [];
-  let contDebe = 0;
-  let contHaber = 0;
-  let totalDebe = 0;
-  let totalHaber = 0;
-  while (debe[contDebe] !== undefined || haber[contHaber] !== undefined) {
-    let newFila = {
-      debe: null,
-      haber: null,
-    };
-    if (debe[contDebe] !== undefined) {
-      newFila.debe = debe[contDebe];
-      totalDebe += debe[contDebe].valor;
-    }
-    if (haber[contHaber] !== undefined) {
-      newFila.haber = haber[contHaber];
-      totalHaber += haber[contHaber].valor;
-    }
-    filas.push(newFila);
-    contHaber++;
-    contDebe++;
-  }
-
-  const total = totalDebe - totalHaber;
+const TablaT = ({datosTabla}) => {
+  const { cuenta, filas, totalDebe, totalHaber, total } = datosTabla;
 
   return (
     <div className="table-panel">
@@ -55,7 +33,7 @@ const TablaT = ({ cuenta, debe, haber }) => {
                 {fila.debe ? (
                   <>
                     <td>{fila.debe.partida}</td>
-                    <td className="center-left-td">{fila.debe.valor}</td>
+                    <td className="center-left-td">{toPisto(fila.debe.valor)}</td>
                   </>
                 ) : (
                   <>
@@ -65,7 +43,7 @@ const TablaT = ({ cuenta, debe, haber }) => {
                 )}
                 {fila.haber ? (
                   <>
-                    <td>{fila.haber.valor}</td>
+                    <td>{toPisto(fila.haber.valor)}</td>
                     <td>{fila.haber.partida}</td>
                   </>
                 ) : (
@@ -80,11 +58,11 @@ const TablaT = ({ cuenta, debe, haber }) => {
               <tr className="bottom-t">
                 <td />
                 {totalDebe > 0 ? (
-                  <td className="center-left-td">{totalDebe}</td>
+                  <td className="center-left-td">{toPisto(totalDebe)}</td>
                 ) : (
                   <td className="center-left-td" />
                 )}
-                {totalHaber > 0 ? <td>{totalHaber}</td> : <td />}
+                {totalHaber > 0 ? <td>{toPisto(totalHaber)}</td> : <td />}
                 <td />
               </tr>
             ) : (
@@ -94,7 +72,7 @@ const TablaT = ({ cuenta, debe, haber }) => {
               {total >= 0 ? (
                 <>
                   <td className="total-t" />
-                  <td className="center-left-td total-t">{total}</td>
+                  <td className="center-left-td total-t">{toPisto(total)}</td>
                   <td />
                   <td />
                 </>
@@ -102,7 +80,7 @@ const TablaT = ({ cuenta, debe, haber }) => {
                 <>
                   <td />
                   <td />
-                  <td className="total-t">{-total}</td>
+                  <td className="total-t">{toPisto(-total)}</td>
                   <td className="total-t" />
                 </>
               )}
