@@ -35,10 +35,15 @@ export const addAccounts = ({ code, name, description, type }) => {
         status: 'error',
         info: 'Nombre no esta definido'
       });
+    } else if (!type) {
+      reject({
+        status: 'error',
+        info: 'Tipo no esta definido'
+      });
     } else {
       reject({
         status: 'error',
-        info: 'Codigo y nombre no están correctos'
+        info: 'Código, tipo y nombre no están correctos'
       });
     }
   });
