@@ -66,6 +66,7 @@ class Catalogue extends React.Component {
                   <h3 className="mb-0">Card tables</h3>
                 </CardHeader>
                 <Table className="align-items-center table-flush" responsive>
+                    {/* ACTIVOS */}
                     <thead className="thead-light">
                         <tr>
                         <th scope="col">Codigo</th>
@@ -85,6 +86,102 @@ class Catalogue extends React.Component {
                     <tbody>
                         <tr>
                         <UncontrolledCollapse toggler="#toggler">
+                            <td>$2,500 USD</td>
+                        </UncontrolledCollapse>
+                        </tr>
+                    </tbody>
+                    {/* PASIVOS */}
+                    <thead className="thead-light">
+                        <tr>
+                        <th scope="col">Codigo</th>
+                        <th scope="col">Cuenta</th>
+                        <th scope="col">
+                        <div>
+                            <Button color="transparent" size="sm" id="toggler1">
+                                <div>
+                                    <i className=" ni ni-fat-add" />
+                                </div>
+                            </Button>
+                        </div>
+                        </th>
+                        <th scope="col" />
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <UncontrolledCollapse toggler="#toggler1">
+                            <td>$2,500 USD</td>
+                        </UncontrolledCollapse>
+                        </tr>
+                    </tbody>
+                    {/* PATRIMONIO */}
+                    <thead className="thead-light">
+                        <tr>
+                        <th scope="col">Codigo</th>
+                        <th scope="col">Cuenta</th>
+                        <th scope="col">
+                        <div>
+                            <Button color="transparent" size="sm" id="toggler2">
+                                <div>
+                                    <i className=" ni ni-fat-add" />
+                                </div>
+                            </Button>
+                        </div>
+                        </th>
+                        <th scope="col" />
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <UncontrolledCollapse toggler="#toggler2">
+                            <td>$2,500 USD</td>
+                        </UncontrolledCollapse>
+                        </tr>
+                    </tbody>
+                    {/* CUENTAS DE INGRESOS */}
+                    <thead className="thead-light">
+                        <tr>
+                        <th scope="col">Codigo</th>
+                        <th scope="col">Cuenta</th>
+                        <th scope="col">
+                        <div>
+                            <Button color="transparent" size="sm" id="toggler3">
+                                <div>
+                                    <i className=" ni ni-fat-add" />
+                                </div>
+                            </Button>
+                        </div>
+                        </th>
+                        <th scope="col" />
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <UncontrolledCollapse toggler="#toggler3">
+                            <td>$2,500 USD</td>
+                        </UncontrolledCollapse>
+                        </tr>
+                    </tbody>
+                    {/* CUENTAS DE COSTOS Y GASTOS */}
+                    <thead className="thead-light">
+                        <tr>
+                        <th scope="col">Codigo</th>
+                        <th scope="col">Cuenta</th>
+                        <th scope="col">
+                        <div>
+                            <Button color="transparent" size="sm" id="toggler4">
+                                <div>
+                                    <i className=" ni ni-fat-add" />
+                                </div>
+                            </Button>
+                        </div>
+                        </th>
+                        <th scope="col" />
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <UncontrolledCollapse toggler="#toggler4">
                             <td>$2,500 USD</td>
                         </UncontrolledCollapse>
                         </tr>
