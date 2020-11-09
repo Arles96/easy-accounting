@@ -85,6 +85,7 @@ class Catalogue extends React.Component {
                                         </th>
                                     </tr>
                                 <tr>
+                                {/* 111 */}
                                     <th>
                                         111
                                     </th>
@@ -510,9 +511,9 @@ class Catalogue extends React.Component {
                                     <td>
                                         1232
                                     </td>
-                                    <tr>
+                                    <td>
                                         Edificios
-                                    </tr>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>
@@ -698,6 +699,9 @@ class Catalogue extends React.Component {
                                 </tr>
                                 <tr>
                                     <td>
+                                        2122
+                                    </td>
+                                    <td>
                                         Préstamos Hipotectarios
                                     </td>
                                 </tr>
@@ -741,6 +745,134 @@ class Catalogue extends React.Component {
                                         Cobros Anticipados
                                     </th>
                                 </tr>
+                                <tr>
+                                    <td>
+                                        2141
+                                    </td>
+                                    <td>
+                                        Rentas Cobradas por Anticipado
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        2142
+                                    </td>
+                                    <td>
+                                        Intereses Cobrados por Anticipado
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        2143
+                                    </td>
+                                    <td>
+                                        Servicios Cobrados por Anticipado
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        2144
+                                    </td>
+                                    <td>
+                                        Anticipos a Clientes
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        22
+                                    </th>
+                                    <th>
+                                        Pasivo No Corriente
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        221
+                                    </th>
+                                    <th>
+                                        Cuentas y Documentos por Pagar
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        2211
+                                    </td>
+                                    <td>
+                                        Acreedores Varios
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        2212
+                                    </td>
+                                    <td>
+                                        Documentos por Pagar
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        2213
+                                    </td>
+                                    <td>
+                                        Obligaciones por Provisiones
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        222
+                                    </th>
+                                    <th>
+                                        Préstamos
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        2221
+                                    </td>
+                                    <td>
+                                        Préstamos Bancarios
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        2222
+                                    </td>
+                                    <td>
+                                        Hipotecas por Pagar
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        223
+                                    </th>
+                                    <th>
+                                        Provisiones
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        2231
+                                    </td>
+                                    <td>
+                                        Provisiones para Compensaciones a Empleados
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        2232
+                                    </td>
+                                    <td>
+                                        Provisiones para Cubrir Garantías a Clientes
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        2233
+                                    </td>
+                                    <td>
+                                        Provisiones para Cubrir Reclamos Legales
+                                    </td>
+                                </tr>
                             </tbody>
                         </Table>
                     </UncontrolledCollapse>
@@ -755,62 +887,134 @@ class Catalogue extends React.Component {
                     <UncontrolledCollapse toggler="#toggler2">
                         <Table className="align-items-center table-flush" responsive>
                             <tbody>
-                                    <tr>
-                                        <td colSpan="1" style = {{ alignText: "center" }}>
-                                            11
-                                        </td>
-                                        <td>
-                                            Activo Corriente
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <th>
+                                        31
+                                    </th>
+                                    <th>
+                                        Comerciante Individual
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        311
+                                    </th>
+                                    <th>
+                                        Capital
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        312
+                                    </th>
+                                    <th>
+                                        Resultados Acumulados
+                                    </th>
+                                </tr>
                                 <tr>
                                     <td>
-                                        111
+                                        3121
                                     </td>
                                     <td>
-                                        Efectivo y Equivalentes de Efectivo
+                                        Utilidades o Pérdidas de Años Anteriores
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        1111
+                                        3122
                                     </td>
                                     <td>
-                                        Caja
+                                        Utilidad o Pérdida Neta del Periodo
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        1112
+                                        3123
                                     </td>
                                     <td>
-                                        Caja Chica
+                                        Pérdidas no Aplicadas
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        32
+                                    </th>
+                                    <th>
+                                        Empresa Jurídica
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        321
+                                    </th>
+                                    <th>
+                                        Capital Social
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        322
+                                    </th>
+                                    <th>
+                                        Reservas
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        3221
+                                    </td>
+                                    <td>
+                                        Reserva Legal
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        1113
+                                        3222
                                     </td>
                                     <td>
-                                        Bancos Ahorro
+                                        Reservas de Previsión
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        1114
+                                       3223 
                                     </td>
                                     <td>
-                                        Depósitos a Plazo
+                                        Reservas de Reinversión
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        1115
+                                        3224
                                     </td>
                                     <td>
-                                        Valores Negociables o Bonos
+                                        Reserva de Educación
                                     </td>
-                                </tr> 
+                                </tr>
+                                <tr>
+                                    <th>
+                                        323
+                                    </th>
+                                    <th>
+                                        Resultados Acumulados
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        3231
+                                    </td>
+                                    <td>
+                                    Utilidad o Pérdida de Años Anteriores
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        3232
+                                    </td>
+                                    <td>
+                                        Utilidad o Pérdida Neta del Ejercicio
+                                    </td>
+                                </tr>
                             </tbody>
                         </Table>
                     </UncontrolledCollapse>
@@ -826,61 +1030,53 @@ class Catalogue extends React.Component {
                         <Table className="align-items-center table-flush" responsive>
                             <tbody>
                                     <tr>
-                                        <td colSpan="1" style = {{ alignText: "center" }}>
-                                            11
+                                        <td>
+                                            4001
                                         </td>
                                         <td>
-                                            Activo Corriente
+                                            Ventas
                                         </td>
                                     </tr>
-                                <tr>
-                                    <td>
-                                        111
-                                    </td>
-                                    <td>
-                                        Efectivo y Equivalentes de Efectivo
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        1111
-                                    </td>
-                                    <td>
-                                        Caja
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        1112
-                                    </td>
-                                    <td>
-                                        Caja Chica
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        1113
-                                    </td>
-                                    <td>
-                                        Bancos Ahorro
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        1114
-                                    </td>
-                                    <td>
-                                        Depósitos a Plazo
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        1115
-                                    </td>
-                                    <td>
-                                        Valores Negociables o Bonos
-                                    </td>
-                                </tr> 
+                                    <tr>
+                                        <td>
+                                            4002
+                                        </td>
+                                        <td>
+                                            Productos Financieros
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            4003
+                                        </td>
+                                        <td>
+                                            Otros Productos
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            4004
+                                        </td>
+                                        <td>
+                                            Rebajas Sobre Compras
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            4005
+                                        </td>
+                                        <td>
+                                            Devoluciones Sobre Compras
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            4006
+                                        </td>
+                                        <td>
+                                            Descuento Sobre Compras
+                                        </td>
+                                    </tr>
                             </tbody>
                         </Table>
                     </UncontrolledCollapse>
@@ -895,62 +1091,70 @@ class Catalogue extends React.Component {
                     <UncontrolledCollapse toggler="#toggler4">
                         <Table className="align-items-center table-flush" responsive>
                             <tbody>
-                                    <tr>
-                                        <td colSpan="1" style = {{ alignText: "center" }}>
-                                            11
-                                        </td>
-                                        <td>
-                                            Activo Corriente
-                                        </td>
-                                    </tr>
                                 <tr>
                                     <td>
-                                        111
+                                        5001
                                     </td>
                                     <td>
-                                        Efectivo y Equivalentes de Efectivo
+                                        Devoluciones Sobre Ventas
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        1111
+                                        5002
                                     </td>
                                     <td>
-                                        Caja
+                                        Rebajas Sobre Ventas
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        1112
+                                        5003
                                     </td>
                                     <td>
-                                        Caja Chica
+                                        Descuentos Sobre Ventas
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        1113
+                                        5004
                                     </td>
                                     <td>
-                                        Bancos Ahorro
+                                        Compras Brutas
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        1114
+                                        5005
                                     </td>
                                     <td>
-                                        Depósitos a Plazo
+                                        Gastos Sobre Compras
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        1115
+                                        5006
                                     </td>
                                     <td>
-                                        Valores Negociables o Bonos
+                                        Gastos de Administración
                                     </td>
-                                </tr> 
+                                </tr>
+                                <tr>
+                                    <td>
+                                        5007
+                                    </td>
+                                    <td>
+                                        Rebajas Sobre Ventas
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        5008
+                                    </td>
+                                    <td>
+                                        Descuentos Sobre Ventas
+                                    </td>
+                                </tr>
                             </tbody>
                         </Table>
                     </UncontrolledCollapse>
