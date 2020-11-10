@@ -19,6 +19,7 @@ import Index from "views/Index.js";
 import Profile from "views/examples/Profile.js";
 import Tables from "views/examples/Tables.js";
 import Icons from "views/examples/Icons.js";
+import Partidas from "views/partidas/Partidas.js";
 import Exercise from "views/examples/Exercise.js";
 import Catalogue from "views/examples/Catalogue.js";
 
@@ -49,6 +50,13 @@ var routes = [
     name: "Tables",
     icon: "ni ni-bullet-list-67 text-red",
     component: Tables,
+    layout: "/admin"
+  },
+  {
+    path: "/partidas",
+    name: "Partidas",
+    icon: "ni ni-bullet-list-67 text-red",
+    component: Partidas,
     layout: "/admin"
   },
   {
