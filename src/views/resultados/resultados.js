@@ -22,8 +22,9 @@ import { Container, Button, TabContent, TabPane } from "reactstrap";
 // core components
 import Header from "components/Headers/Header.js";
 import TablaT from "../../components/resultados/TablaT";
-import BalanceGeneral from "../../components/resultados/BalanceGeneral";
+import BalanzaComprobacion from "../../components/resultados/BalanzaComprobacion";
 import EstadoResultado from "components/resultados/EstadoResultado";
+import BalanceGeneral from "components/resultados/BalanceGeneral";
 
 const testData = [
   {
@@ -222,7 +223,6 @@ class Tables extends React.Component {
         <Container fluid className="botones-resultados">
           <Button
             color="primary"
-            // href="#pablo"
             onClick={() => this.toggle(1)}
             size="md"
           >
@@ -230,19 +230,38 @@ class Tables extends React.Component {
           </Button>
           <Button
             color="primary"
-            // href="#pablo"
             onClick={() => this.toggle(2)}
             size="md"
           >
-            Balance General
+            Balanza de Comprobacion
           </Button>
           <Button
             color="primary"
-            // href="#pablo"
             onClick={() => this.toggle(3)}
             size="md"
           >
             Estado de Resultados
+          </Button>
+          <Button
+            color="primary"
+            onClick={() => this.toggle(4)}
+            size="md"
+          >
+            Balance General
+          </Button>
+        </Container>
+        <Container fluid className="botones-impresion">
+          <Button
+            color="success"
+            size="md"
+          >
+            Exportar Excel
+          </Button>
+          <Button
+            color="danger"
+            size="md"
+          >
+            Exportar PDF
           </Button>
         </Container>
 
@@ -280,16 +299,19 @@ class Tables extends React.Component {
         </TabContent> */}
         <Container fluid>
           <div className="card-grid">
-            
-               {this.state.arrCuentas.map((datosTabla) => (
+            {
+              {
+                1: this.state.arrCuentas.map((datosTabla) => (
                   <TablaT
                     key={datosTabla.cuenta + "tt"}
                     datosTabla={datosTabla}
                   />
-                ))}
-              
-              <BalanceGeneral arrCuentas={this.state.arrCuentas} />
-              <EstadoResultado />
+                )),
+                2: <BalanzaComprobacion arrCuentas={this.state.arrCuentas} />,
+                3: <EstadoResultado />,
+                4: <BalanceGeneral />
+              }[this.state.activeTab]
+            }
           </div>
         </Container>
       </>
