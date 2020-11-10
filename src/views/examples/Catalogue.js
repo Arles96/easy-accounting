@@ -21,11 +21,14 @@ import {
     Button,
     Card,
     CardBody,
+    InputGroupAddon,
+    InputGroupText,
+    Input,
+    InputGroup,
     CardHeader,
     UncontrolledCollapse,
     Form,
     FormGroup,
-    Input,
     Table,
     Container,
     Row,
@@ -63,7 +66,25 @@ class Catalogue extends React.Component {
             <div className="col">
                 <Card className="shadow">
                     <CardHeader className="border-0">
-                        <h3 className="mb-0">Catálogo de Cuentas</h3>
+                        <Form>
+                            <FormGroup row>
+                                <Col sm = {7}>    
+                                    <h1>Catálogo de Cuentas</h1>
+                                </Col>
+                                <Col sm = {5}>
+                                <FormGroup className="mb-0">
+                                    <InputGroup className="input-group-alternative">
+                                    <InputGroupAddon addonType="prepend">
+                                        <InputGroupText>
+                                        <i className="fas fa-search" />
+                                        </InputGroupText>
+                                    </InputGroupAddon>
+                                    <Input placeholder="Search" type="text" />
+                                    </InputGroup>
+                                </FormGroup>
+                                </Col>
+                            </FormGroup>
+                        </Form>
                     </CardHeader>
                     {/* ACTIVOS */}
                     <Button color="transparent" id="toggler">
@@ -76,14 +97,14 @@ class Catalogue extends React.Component {
                     <UncontrolledCollapse toggler="#toggler">
                         <Table className="align-items-center table-flush" responsive>
                             <tbody>
-                                    <tr>
-                                        <th>
-                                            11
-                                        </th>
-                                        <th>
-                                            Activo Corriente
-                                        </th>
-                                    </tr>
+                                <tr>
+                                    <th>
+                                        11
+                                    </th>
+                                    <th>
+                                        Activo Corriente
+                                    </th>
+                                </tr>
                                 <tr>
                                 {/* 111 */}
                                     <th>
