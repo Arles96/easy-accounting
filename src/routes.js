@@ -20,6 +20,7 @@ import Profile from "views/examples/Profile.js";
 import Tables from "views/examples/Tables.js";
 import Icons from "views/examples/Icons.js";
 import Exercise from "views/examples/Exercise.js";
+import Catalogue from "views/examples/Catalogue.js";
 
 var routes = [
   {
@@ -55,6 +56,13 @@ var routes = [
     name: "Ejercicios",
     icon: "ni ni-bullet-list-67 text-red",
     component: Exercise,
+    layout: "/admin"
+  },
+  {
+    path: "/catalogue",
+    name: "Catálogo de Cuentas",
+    icon: "ni ni-collection text-blue",
+    component: Catalogue,
     layout: "/admin"
   }
 ];
