@@ -1,12 +1,13 @@
 import Accounts from '../config/AccountsDb';
 import { numberRegex } from '../extra/regex';
 
-export const addAccounts = ({ code, name, description }) => {
+export const addAccounts = ({ code, name, description, type }) => {
   return new Promise((resolve, reject) => {
-    if ((code && numberRegex.test(code)) && name) {
+    if ((code && numberRegex.test(code)) && name && type) {
       Accounts.post({
         code: code,
         name: name,
+        type: type,
         description: description,
       }).then(() => {
         resolve({
@@ -34,10 +35,15 @@ export const addAccounts = ({ code, name, description }) => {
         status: 'error',
         info: 'Nombre no esta definido'
       });
+    } else if (!type) {
+      reject({
+        status: 'error',
+        info: 'Tipo no esta definido'
+      });
     } else {
       reject({
         status: 'error',
-        info: 'Codigo y nombre no están correctos'
+        info: 'Código, tipo y nombre no están correctos'
       });
     }
   });
