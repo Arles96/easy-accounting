@@ -99,22 +99,22 @@ export const searchAccount = text => {
       const result = [];
       const regex = new RegExp(text, 'i');
       getAccounts().then(response => {
-	const { data }  = response;
-	const { rows } = data;
-	rows.forEach(item => {
-	  const { doc } = item;
-	  const { code, name } = doc;
-	  if (regex.test(code) || regex.test(name)) {
-	    result.push(doc);
-	  }
-	});
-	resolve({
-	  status: 'success',
-	  info: 'Resultado de la busqueda',
-	  data: result,
-	});
+        const { data }  = response;
+        const { rows } = data;
+        rows.forEach(item => {
+          const { doc } = item;
+          const { code, name } = doc;
+          if (regex.test(code) || regex.test(name)) {
+            result.push(doc);
+          }
+        });
+        resolve({
+          status: 'success',
+          info: 'Resultado de la busqueda',
+          data: result,
+        });
       }).catch(error => {
-	reject(error);
+	      reject(error);
       });
     } else {
       reject({
