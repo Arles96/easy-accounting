@@ -92,3 +92,36 @@ export const getOneAccount = (_id) => {
     }
   });
 };
+
+export const searchAccount = text => {
+  return new Promise((resolve, reject) => {
+    if (text) {
+      const result = [];
+      const regex = new RegExp(text, 'i');
+      getAccounts().then(response => {
+        const { data }  = response;
+        const { rows } = data;
+        rows.forEach(item => {
+          const { doc } = item;
+          const { code, name } = doc;
+          if (regex.test(code) || regex.test(name)) {
+            result.push(doc);
+          }
+        });
+        resolve({
+          status: 'success',
+          info: 'Resultado de la busqueda',
+          data: result,
+        });
+      }).catch(error => {
+	      reject(error);
+      });
+    } else {
+      reject({
+	status: 'error',
+	info: 'El texto no esta definido',
+      });
+    }
+  });
+};
+
