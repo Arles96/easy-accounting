@@ -33,24 +33,10 @@ var routes = [
     layout: "/admin"
   },
   {
-    path: "/icons",
-    name: "Icons",
-    icon: "ni ni-planet text-blue",
-    component: Icons,
-    layout: "/admin"
-  },
-  {
-    path: "/user-profile",
-    name: "User Profile",
-    icon: "ni ni-single-02 text-yellow",
-    component: Profile,
-    layout: "/admin"
-  },
-  {
-    path: "/tables",
-    name: "Tables",
-    icon: "ni ni-bullet-list-67 text-red",
-    component: Tables,
+    path: "/catalogue",
+    name: "Catálogo de Cuentas",
+    icon: "ni ni-collection text-blue",
+    component: Catalogue,
     layout: "/admin"
   },
   {
@@ -63,22 +49,15 @@ var routes = [
   {
     path: "/exercises",
     name: "Ejercicios",
-    icon: "ni ni-bullet-list-67 text-red",
+    icon: "ni ni-map-big text-yellow",
     component: Exercise,
     layout: "/admin"
   },
   {
     path: "/resultados",
     name: "Resultados",
-    icon: "ni ni-bullet-list-67 text-red",
+    icon: "ni ni-laptop text-green",
     component: Resultados,
-    layout: "/admin"
-  },
-  {
-    path: "/catalogue",
-    name: "Catálogo de Cuentas",
-    icon: "ni ni-collection text-blue",
-    component: Catalogue,
     layout: "/admin"
   }
 ];
