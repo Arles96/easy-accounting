@@ -1,33 +1,42 @@
 import React from "react";
-import { Row, Table } from "reactstrap";
+import { Row, Table, Card, Container, CardHeader } from "reactstrap";
 
 const Cuenta = (props) => {
   return (
-    <div>
-      <div className="pl-lg-4">
+    <Card className="shadow">
+      <CardHeader className="align-center">
+        <h3 className="text-center">{props.tipo}</h3>
+      </CardHeader>
+      <div className="">
         <Row>
-          <Table className="align-items-center table-flush" responsive>
-            <thead className="thead-light">
-              <tr>
-                <th scope="col" className="text-center">
-                  Cuenta
-                </th>
-                <th scope="col" className="text-center">
-                  {props.tipo}
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th className="text-center">Cuenta</th>
-                <th className="text-center">20000</th>
-              </tr>
-            </tbody>
-          </Table>
+          <Container>
+            <Table className="align-items-center table-flush" responsive>
+              <thead className="thead-light">
+                <tr>
+                  <th scope="col" className="text-center">
+                    Cuenta
+                  </th>
+                  <th scope="col" className="text-center">
+                    Cantidad
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th className="text-center">Cuenta</th>
+                  <th className="text-center">20000</th>
+                </tr>
+                <tr>
+                  <th className="text-center">Cuenta</th>
+                  <th className="text-center">4000</th>
+                </tr>
+              </tbody>
+            </Table>
+          </Container>
         </Row>
         <br></br>
       </div>
-    </div>
+    </Card>
   );
 };
 

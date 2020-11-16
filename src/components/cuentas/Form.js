@@ -9,10 +9,10 @@ const countForm = () => {
         {/*Tabla*/}
         <Row>
           <Col>
-            <Table tipo="debe" />
+            <Table tipo="Debe" />
           </Col>
           <Col>
-            <Table tipo="haber" />
+            <Table tipo="Haber" />
           </Col>
         </Row>
         <br></br>
@@ -62,7 +62,7 @@ const countForm = () => {
               </FormGroup>
             </Col>
 
-            <Col md="6">
+            <Col md="4">
               <FormGroup>
                 <label className="form-control-label" htmlFor="cantidad">
                   Cantidad
@@ -70,8 +70,19 @@ const countForm = () => {
                 <Input
                   className="form-control-alternative"
                   id="cantidad"
-                  type="number"
+                  type="text"
                 />
+              </FormGroup>
+            </Col>
+            <Col md="2">
+              <FormGroup>
+                <label className="form-control-label" htmlFor="cantidad">
+                  {}
+                </label>
+                <Input type="select" name="select">
+                  <option>Debe</option>
+                  <option>Haber</option>
+                </Input>
               </FormGroup>
             </Col>
           </Row>
