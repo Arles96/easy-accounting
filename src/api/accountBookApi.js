@@ -214,7 +214,7 @@ export const generateMajorization = idExercise => new Promise((resolve, reject) 
         const arrayMajorization = [];
         const { data: dataAccounts } = responseAccounts;
         // listando todas las cuentas
-        dataAccounts.forEach(account => {
+        dataAccounts.rows.forEach(account => {
           const debit = [];
           const credit = [];
           // listando las partidas
