@@ -1,5 +1,5 @@
-import Accounts from 'config/AccountsDb';
 import AccountBook from '../config/AccountBookDb';
+import { getAccounts } from './accountsApi';
 
 const validArrayAccount = arrayAccount => {
   let error = false;
@@ -25,6 +25,14 @@ const validArrayAccount = arrayAccount => {
   } else {
     return true
   }
+}
+
+const totalSection = arraySection => {
+  let total = 0;
+  arraySection.forEach(({ money }) => {
+    total += money
+  });
+  return total;
 }
 
 export const addAccountOperation = ({
@@ -136,14 +144,15 @@ export const getAccountsOperations = idExercise => new Promise((resolve, reject)
         }
       });
       resolve({
-        status: 'error',
+        status: 'success',
         info: 'Obteniendo los datos',
         data: data
       });
-    }).catch(() => {
+    }).catch((error) => {
       reject({
-        status: 'success',
-        info: 'Error al '
+        status: 'error',
+        info: 'Error al obtener las partidas',
+        error: error
       })
     });
   } else {
@@ -196,3 +205,73 @@ export const deleteAccountOperation = _id => new Promise((resolve, reject) => {
     });
   }
 });
+
+export const generateMajorization = idExercise => new Promise((resolve, reject) => {
+  if (idExercise) {
+    getAccountsOperations(idExercise).then(response => {
+      const { data } = response;
+      getAccounts().then(responseAccounts => {
+        const arrayMajorization = [];
+        const { data: dataAccounts } = responseAccounts;
+        // listando todas las cuentas
+        dataAccounts.forEach(account => {
+          const debit = [];
+          const credit = [];
+          // listando las partidas
+          data.forEach(item => {
+            const { arrayCreditAccounts, arrayDebitAccounts } = item;
+            // agregando la seccion de credito de una cuenta
+            arrayCreditAccounts.forEach(accountCredit => {
+              if (accountCredit.numberAccount === account.code) {
+                credit.push({
+                  numberItem: item.number,
+                  money: parseFloat(accountCredit.money)
+                });
+              }
+            });
+            // agregando la seccion de debito de una cuenta
+            arrayDebitAccounts.forEach(accountDebit => {
+              if (accountDebit.numberAccount === account.code) {
+                debit.push({
+                  numberItem: item.number,
+                  money: parseFloat(accountDebit.money)
+                });
+              }
+            });
+          });
+          // verificando si tuvieron operaciones
+          if (debit.length > 0 || credit.length > 0) {
+            const subtotalDebit = totalSection(debit);
+            const subtotalCredit = totalSection(credit);
+            const total = subtotalDebit - subtotalCredit;
+            const doc = {
+              nameAccount: account.name,
+              code: account.code,
+              debit: debit,
+              credit: credit,
+              subtotalDebit: subtotalDebit,
+              subtotalCredit: subtotalCredit,
+              sectionAccount: total > 0 ? 'debit' : 'credit',
+              total: total > 0 ? total : total * -1,
+            }
+            arrayMajorization.push(doc);
+          }
+        });
+        resolve({
+          status: 'success',
+          info: 'Se realizo la mayorización exitosamente',
+          data: arrayMajorization,
+        });
+      }).catch(error => {
+        reject(error);
+      })
+    }).catch(error => {
+      reject(error);
+    });
+  } else {
+    reject({
+      status: 'error',
+      info: 'Identificador del ejercicio no definido'
+    });
+  }
+})
