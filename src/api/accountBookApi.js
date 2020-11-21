@@ -274,4 +274,45 @@ export const generateMajorization = idExercise => new Promise((resolve, reject) 
       info: 'Identificador del ejercicio no definido'
     });
   }
-})
+});
+
+export const generateComprobationBalance = (idExercise) => {
+  return new Promise((resolve, reject) => {
+    generateMajorization(idExercise).then(response => {
+      const { data } = response;
+      const arrayComprobationBalance = [];
+      let totalDebitMov = 0;
+      let totalCreditMov = 0;
+      let totalCreditSald = 0;
+      let totalDebitSald = 0;
+      data.forEach(doc => {
+        totalCreditMov += doc.subtotalCredit;
+        totalDebitMov += doc.subtotalDebit;
+        if (doc.sectionAccount === 'debit') {
+          totalDebitSald += doc.total
+        } else {
+          totalCreditSald += doc.total;
+        }
+        arrayComprobationBalance.push({
+          nameAccount: doc.nameAccount,
+          code: doc.code,
+          subtotalDebit: doc.subtotalDebit,
+          subtotalCredit: doc.subtotalCredit,
+          sectionAccount: doc.sectionAccount,
+          total: doc.total,
+        });
+      });
+      resolve({
+        status: 'success',
+        info: 'Se genero la balanza de comprobación',
+        data: arrayComprobationBalance,
+        totalCreditMov: totalCreditMov,
+        totalDebitMov: totalDebitMov,
+        totalCreditSald: totalCreditSald,
+        totalDebitSald: totalDebitSald,
+      });
+    }).catch(error => {
+      reject(error);
+    });
+  });
+}
