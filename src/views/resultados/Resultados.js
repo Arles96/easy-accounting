@@ -25,7 +25,7 @@ import TablaT from "../../components/resultados/TablaT";
 import BalanzaComprobacion from "../../components/resultados/BalanzaComprobacion";
 import EstadoResultado from "components/resultados/EstadoResultado";
 import BalanceGeneral from "components/resultados/BalanceGeneral";
-
+import {generateMajorization} from "../../api/accountBookApi";
 const testData = [
   {
     cuenta: "Cuenta X",
@@ -169,7 +169,9 @@ class Tables extends React.Component {
   constructor() {
     super();
     //const { cuentas } = props;
-
+    const TData = generateMajorization(1).then(response => {
+      console.log("Entra: ", response);
+    });
     const cuentas = testData;
 
     const arrCuentas = cuentas.map(({ cuenta, debe, haber }) => {
@@ -205,9 +207,38 @@ class Tables extends React.Component {
         total,
       };
     });
-
     this.toggle = this.toggle.bind(this);
-    this.state = { arrCuentas, activeTab: 1 };
+    this.state = { arrCuentas, activeTab: 1, prueba: []};
+  }
+
+  componentDidMount(){
+    generateMajorization(1).then(response => {
+      console.log("Entró ", response)
+      console.log("resp[0] ", response.data[0])
+      const arr = response.data.map(({nameAccount, code, debit, credit, subtotalDebit, subtotalCredit, sectionAccount, total}) => {
+      const rows = [];
+      let contDebe = 0;
+      let contHaber = 0;
+      while (debit[contDebe] !== undefined || credit[contHaber] !== undefined) {
+        let newFila = {
+          debit: null,
+          credit: null,
+        };
+        if (debit[contDebe] !== undefined) {
+          newFila.debit = debit[contDebe];
+        }
+        if (credit[contHaber] !== undefined) {
+          newFila.credit = credit[contHaber];
+        }
+        rows.push(newFila);
+        contHaber++;
+        contDebe++;
+      }
+        return {nameAccount, code, rows, subtotalDebit, subtotalCredit, sectionAccount, total}
+      })
+      this.setState({prueba: arr})
+      console.log("Estado: ", this.state)
+    })
   }
 
   toggle(tab) {
@@ -301,9 +332,9 @@ class Tables extends React.Component {
           <div className="card-grid">
             {
               {
-                1: this.state.arrCuentas.map((datosTabla) => (
+                1: this.state.prueba.map((datosTabla) => (
                   <TablaT
-                    key={datosTabla.cuenta + "tt"}
+                    key={datosTabla.nameAccount + "tt"}
                     datosTabla={datosTabla}
                   />
                 )),
