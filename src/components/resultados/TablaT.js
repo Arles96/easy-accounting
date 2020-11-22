@@ -9,8 +9,16 @@ import { toPisto } from "../../components/utils";
 //   valor: ""j
 // }
 
-const TablaT = ({datosTabla}) => {
-  const { nameAccount, code, rows, subtotalDebit, subtotalCredit, sectionAccount, total } = datosTabla;
+const TablaT = ({ datosTabla }) => {
+  const {
+    nameAccount,
+    code,
+    rows,
+    subtotalDebit,
+    subtotalCredit,
+    sectionAccount,
+    total,
+  } = datosTabla;
 
   return (
     <div className="table-panel">
@@ -33,7 +41,9 @@ const TablaT = ({datosTabla}) => {
                 {fila.debit ? (
                   <>
                     <td>{`part# ${fila.debit.numberItem}`}</td>
-                    <td className="center-left-td">{toPisto(fila.debit.money)}</td>
+                    <td className="center-left-td">
+                      {toPisto(fila.debit.money)}
+                    </td>
                   </>
                 ) : (
                   <>
@@ -62,17 +72,23 @@ const TablaT = ({datosTabla}) => {
                 ) : (
                   <td className="center-left-td" />
                 )}
-                {subtotalCredit > 0 ? <td>{toPisto(subtotalCredit)}</td> : <td />}
+                {subtotalCredit > 0 ? (
+                  <td>{toPisto(subtotalCredit)}</td>
+                ) : (
+                  <td />
+                )}
                 <td />
               </tr>
             ) : (
               <></>
             )}
             <tr>
-              {sectionAccount === 'debit' ? (
+              {sectionAccount === "debit" ? (
                 <>
                   <td className="total-t" />
-                  <td className="center-left-td total-t">{`Saldos: ${toPisto(total)}`}</td>
+                  <td className="center-left-td total-t">{`Saldos: ${toPisto(
+                    total
+                  )}`}</td>
                   <td />
                   <td />
                 </>
