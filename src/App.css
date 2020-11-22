@@ -36,3 +36,82 @@
     transform: rotate(360deg);
   }
 }
+
+.card-grid {
+  display: flex;
+  flex-flow: wrap;
+  margin-top: -3rem !important;
+}
+
+.table-panel {
+  margin: 0 2vw 5vh 0;
+  text-align: center;
+}
+
+.center-left-td {
+  border-right: 1px solid #e9ecef;
+}
+
+.tabla-t td {
+  border-top: 0px;
+}
+
+.bottom-t {
+  border-top: 1px solid #e9ecef;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.total-t {
+  border-bottom: 5px double;
+}
+
+.balanza-comprobacion-panel {
+  width: 100%;
+}
+
+.estados-resultados-panel {
+  width: 100%;
+}
+
+.balance-general-panel {
+  width: 100%;
+}
+
+.multiple-row-cell-center {
+  vertical-align: middle !important;
+  text-align: center !important;
+}
+
+.left-border-cell {
+  border-left: 1px solid #e9ecef;
+}
+
+.tabla-estado-resultados td {
+  border-right: 1px solid #e9ecef;
+}
+
+.balanza-totales-cells {
+  border-top: 5px double  !important;
+}
+
+.botones-resultados {
+  position: absolute;
+  margin-top: -7rem !important;
+}
+
+.botones-impresion {
+  position: absolute;
+  margin-top: -11rem !important;
+  text-align: right;
+  width: calc(100% - 2vw);
+}
+
+.min-column-left {
+  width: 40%;
+  word-wrap: break-word;
+  text-align: left;
+}
+
+.bold-td {
+  font-weight: bold;
+}

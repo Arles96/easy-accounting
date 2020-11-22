@@ -19,7 +19,10 @@ import Index from "views/Index.js";
 import Profile from "views/examples/Profile.js";
 import Tables from "views/examples/Tables.js";
 import Icons from "views/examples/Icons.js";
+import Resultados from "views/resultados/Resultados.js";
+import Partidas from "views/partidas/Partidas.js";
 import Exercise from "views/examples/Exercise.js";
+import Catalogue from "views/examples/Catalogue.js";
 
 var routes = [
   {
@@ -30,31 +33,31 @@ var routes = [
     layout: "/admin"
   },
   {
-    path: "/icons",
-    name: "Icons",
-    icon: "ni ni-planet text-blue",
-    component: Icons,
+    path: "/catalogue",
+    name: "Catálogo de Cuentas",
+    icon: "ni ni-collection text-blue",
+    component: Catalogue,
     layout: "/admin"
   },
   {
-    path: "/user-profile",
-    name: "User Profile",
-    icon: "ni ni-single-02 text-yellow",
-    component: Profile,
-    layout: "/admin"
-  },
-  {
-    path: "/tables",
-    name: "Tables",
+    path: "/partidas",
+    name: "Partidas",
     icon: "ni ni-bullet-list-67 text-red",
-    component: Tables,
+    component: Partidas,
     layout: "/admin"
   },
   {
     path: "/exercises",
     name: "Ejercicios",
-    icon: "ni ni-bullet-list-67 text-red",
+    icon: "ni ni-map-big text-yellow",
     component: Exercise,
+    layout: "/admin"
+  },
+  {
+    path: "/resultados",
+    name: "Resultados",
+    icon: "ni ni-laptop text-green",
+    component: Resultados,
     layout: "/admin"
   }
 ];
