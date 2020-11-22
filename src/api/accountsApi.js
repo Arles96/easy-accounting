@@ -3,7 +3,7 @@ import { numberRegex } from '../extra/regex';
 
 export const addAccounts = ({ code, name, description, type }) => {
   return new Promise((resolve, reject) => {
-    if ((code && numberRegex.test(code)) && name && type) {
+    if (code && name && type) {
       Accounts.post({
         code: code,
         name: name,
