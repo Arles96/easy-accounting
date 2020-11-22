@@ -25,145 +25,7 @@ import TablaT from "../../components/resultados/TablaT";
 import BalanzaComprobacion from "../../components/resultados/BalanzaComprobacion";
 import EstadoResultado from "components/resultados/EstadoResultado";
 import BalanceGeneral from "components/resultados/BalanceGeneral";
-import {generateMajorization} from "../../api/accountBookApi";
-const testData = [
-  {
-    cuenta: "Cuenta X",
-    debe: [
-      {
-        partida: "part #",
-        valor: 5000,
-      },
-      {
-        partida: "part #",
-        valor: 5000,
-      },
-      {
-        partida: "part #",
-        valor: 5000,
-      },
-      {
-        partida: "part #",
-        valor: 5000,
-      },
-      {
-        partida: "part #",
-        valor: 5000,
-      },
-    ],
-    haber: [
-      {
-        partida: "part #",
-        valor: 5000,
-      },
-      {
-        partida: "part #",
-        valor: 5000,
-      },
-      {
-        partida: "part #",
-        valor: 5000,
-      },
-    ],
-  },
-  {
-    cuenta: "Cuenta Y",
-    debe: [
-      {
-        partida: "part #",
-        valor: 5000,
-      },
-      {
-        partida: "part #",
-        valor: 5000,
-      },
-      {
-        partida: "part #",
-        valor: 5000,
-      },
-      {
-        partida: "part #",
-        valor: 5000,
-      },
-      {
-        partida: "part #",
-        valor: 5000,
-      },
-    ],
-    haber: [
-      {
-        partida: "part #",
-        valor: 53000,
-      },
-      {
-        partida: "part #",
-        valor: 5000,
-      },
-      {
-        partida: "part #",
-        valor: 5000,
-      },
-    ],
-  },
-  {
-    cuenta: "Cuenta Z",
-    debe: [
-      {
-        partida: "part #",
-        valor: 1000,
-      },
-      {
-        partida: "part #",
-        valor: 5000,
-      },
-      {
-        partida: "part #",
-        valor: 5000,
-      },
-      {
-        partida: "part #",
-        valor: 5000,
-      },
-    ],
-    haber: [
-      {
-        partida: "part #",
-        valor: 5000,
-      },
-      {
-        partida: "part #",
-        valor: 5000,
-      },
-      {
-        partida: "part #",
-        valor: 5000,
-      },
-    ],
-  },
-  {
-    cuenta: "Cuenta A",
-    debe: [
-      {
-        partida: "part #",
-        valor: 5000,
-      },
-      {
-        partida: "part #",
-        valor: 5000,
-      },
-    ],
-    haber: [
-      {
-        partida: "part #",
-        valor: 5000,
-      },
-      {
-        partida: "part #",
-        valor: 5000,
-      },
-    ],
-  },
-];
+import {generateMajorization, generateComprobationBalance} from "../../api/accountBookApi";
 
 class Tables extends React.Component {
   constructor() {
@@ -172,43 +34,9 @@ class Tables extends React.Component {
     const TData = generateMajorization(1).then(response => {
       console.log("Entra: ", response);
     });
-    const cuentas = testData;
 
-    const arrCuentas = cuentas.map(({ cuenta, debe, haber }) => {
-      const filas = [];
-      let contDebe = 0;
-      let contHaber = 0;
-      let totalDebe = 0;
-      let totalHaber = 0;
-      while (debe[contDebe] !== undefined || haber[contHaber] !== undefined) {
-        let newFila = {
-          debe: null,
-          haber: null,
-        };
-        if (debe[contDebe] !== undefined) {
-          newFila.debe = debe[contDebe];
-          totalDebe += debe[contDebe].valor;
-        }
-        if (haber[contHaber] !== undefined) {
-          newFila.haber = haber[contHaber];
-          totalHaber += haber[contHaber].valor;
-        }
-        filas.push(newFila);
-        contHaber++;
-        contDebe++;
-      }
-
-      const total = totalDebe - totalHaber;
-      return {
-        cuenta,
-        filas,
-        totalDebe,
-        totalHaber,
-        total,
-      };
-    });
     this.toggle = this.toggle.bind(this);
-    this.state = { arrCuentas, activeTab: 1, prueba: []};
+    this.state = { activeTab: 1, prueba: [], balanzaComprobacion: { arrCuentas: [], totalCreditMov: 0, totalDebitMov: 0, totalCreditSald: 0, totalDebitSald: 0}}
   }
 
   componentDidMount(){
@@ -238,7 +66,20 @@ class Tables extends React.Component {
       })
       this.setState({prueba: arr})
       console.log("Estado: ", this.state)
-    })
+    });
+    generateComprobationBalance(1).then(response=>{
+      if(!response.status || response.status !== "success"){
+        console.log("Error Balanza de Comprobacion: ", response);
+      }
+      this.setState({balanzaComprobacion:
+      {
+        arrCuentas: response.data,
+        totalCreditMov: response.totalCreditMov,
+        totalDebitMov: response.totalDebitMov,
+        totalCreditSald: response.totalCreditSald,
+        totalDebitSald: response.totalDebitSald
+      }})
+    });
   }
 
   toggle(tab) {
@@ -295,39 +136,6 @@ class Tables extends React.Component {
             Exportar PDF
           </Button>
         </Container>
-
-        {/* <TabContent activeTab={this.state.activeTab}>
-          <TabPane tabId="1">
-            <Container fluid>
-              <div className="card-grid">
-                {this.state.activeTab === 1
-                  ? this.state.arrCuentas.map((datosTabla) => (
-                      <TablaT
-                        key={datosTabla.cuenta + "tt"}
-                        datosTabla={datosTabla}
-                      />
-                    ))
-                  : null}
-              </div>
-            </Container>
-          </TabPane>
-          <TabPane tabId="2">
-            <Container fluid>
-              <div className="card-grid">
-                {this.state.activeTab === 2 ? (
-                  <BalanceGeneral arrCuentas={this.state.arrCuentas} />
-                ) : null}
-              </div>
-            </Container>
-          </TabPane>
-          <TabPane tabId="3">
-            <Container fluid>
-              <div className="card-grid">
-                {this.state.activeTab === 3 ? <EstadoResultado /> : null}
-              </div>
-            </Container>
-          </TabPane>
-        </TabContent> */}
         <Container fluid>
           <div className="card-grid">
             {
@@ -338,7 +146,7 @@ class Tables extends React.Component {
                     datosTabla={datosTabla}
                   />
                 )),
-                2: <BalanzaComprobacion arrCuentas={this.state.arrCuentas} />,
+                2: <BalanzaComprobacion data={this.state.balanzaComprobacion} />,
                 3: <EstadoResultado />,
                 4: <BalanceGeneral />
               }[this.state.activeTab]

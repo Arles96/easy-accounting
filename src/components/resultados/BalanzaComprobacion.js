@@ -9,29 +9,8 @@ import { toPisto } from "../../components/utils"
 //   valor: ""
 // }
 
-const BalanzaCombrobacion = ({ arrCuentas }) => {
-  const totales = arrCuentas.reduce(
-    (totales, cuenta) => {
-      let tots = totales;
-      console.log(totales);
-      tots.movimientos.debe += cuenta.totalDebe;
-      tots.movimientos.haber += cuenta.totalHaber;
-      if (cuenta.total >= 0) tots.saldos.debe += cuenta.total;
-      else tots.saldos.haber -= cuenta.total;
-      return tots;
-    },
-    {
-      movimientos: {
-        debe: 0,
-        haber: 0,
-      },
-      saldos: {
-        debe: 0,
-        haber: 0,
-      },
-    }
-  );
-
+const BalanzaCombrobacion = ({ data }) => {
+  const { arrCuentas, totalCreditMov, totalDebitMov, totalCreditSald, totalDebitSald} = data;
   return (
     <div className="table-panel balanza-comprobacion-panel">
       <Card className="table-card">
@@ -65,33 +44,33 @@ const BalanzaCombrobacion = ({ arrCuentas }) => {
           <tbody>
             {arrCuentas.map((cuenta, index) => (
               <tr key={"filaBalance" + index + " " + cuenta.cuenta}>
-                <td>{cuenta.cuenta}</td>
-                <td className="left-border-cell">{toPisto(cuenta.totalDebe)}</td>
-                <td>{toPisto(cuenta.totalHaber)}</td>
-                {cuenta.total > 0 ? (
+                <td>{cuenta.nameAccount}</td>
+                <td className="left-border-cell">{toPisto(cuenta.subtotalDebit)}</td>
+                <td>{toPisto(cuenta.subtotalCredit)}</td>
+                {cuenta.total ===  0 ? (
+                  <>
+                    <td className="left-border-cell" />
+                    <td />
+                  </>
+                ) : cuenta.sectionAccount === "debit" ? (
                   <>
                     <td className="left-border-cell">{toPisto(cuenta.total)}</td>
                     <td />
                   </>
-                ) : cuenta.total < 0 ? (
-                  <>
-                    <td className="left-border-cell" />
-                    <td>{toPisto(-cuenta.total)}</td>
-                  </>
                 ) : (
                   <>
                     <td className="left-border-cell" />
-                    <td />
+                    <td>{toPisto(cuenta.total)}</td>
                   </>
                 )}
               </tr>
             ))}
             <tr>
-              <td className="balanza-totales-cells" >TOTALES</td>
-              <td className="left-border-cell balanza-totales-cells">{toPisto(totales.movimientos.debe)}</td>
-              <td className="balanza-totales-cells" >{toPisto(totales.movimientos.haber)}</td>
-              <td className="left-border-cell balanza-totales-cells">{toPisto(totales.saldos.debe)}</td>
-              <td className="balanza-totales-cells" >{toPisto(totales.saldos.haber)}</td>
+              <td className="balanza-totales-cells bold-td" >TOTALES</td>
+              <td className="left-border-cell balanza-totales-cells bold-td">{toPisto(totalDebitMov)}</td>
+              <td className="balanza-totales-cells bold-td" >{toPisto(totalCreditMov)}</td>
+              <td className="left-border-cell balanza-totales-cells bold-td">{toPisto(totalDebitSald)}</td>
+              <td className="balanza-totales-cells bold-td" >{toPisto(totalCreditSald)}</td>
             </tr>
           </tbody>
         </Table>
