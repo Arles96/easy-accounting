@@ -1,35 +1,43 @@
 import React from "react";
-import { Row, Table, Card, Container, CardHeader } from "reactstrap";
+import { Row, Table, Card, Container, CardHeader, Button } from "reactstrap";
 
-const Cuenta = (props) => {
+const CuentasTabla = (props) => {
   return (
     <Card className="shadow">
       <CardHeader className="align-center">
-        <h3 className="text-center">{props.tipo}</h3>
+        <h3 className="text-center">
+          <strong>{props.tipo}</strong>
+        </h3>
       </CardHeader>
-      <div className="">
+      <div>
         <Row>
           <Container>
             <Table className="align-items-center table-flush" responsive>
               <thead className="thead-light">
                 <tr>
                   <th scope="col" className="text-center">
-                    Cuenta
+                    <strong>Cuenta</strong>
                   </th>
                   <th scope="col" className="text-center">
-                    Cantidad
+                    <strong>Cantidad</strong>
                   </th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th className="text-center">Cuenta</th>
-                  <th className="text-center">20000</th>
-                </tr>
-                <tr>
-                  <th className="text-center">Cuenta</th>
-                  <th className="text-center">4000</th>
-                </tr>
+                {props.arreglo.map((elemento) => {
+                  return (
+                    <tr key={elemento.idAccount}>
+                      <th className="text-center">{elemento.nameAccount}</th>
+                      <th className="text-center">{elemento.money}</th>
+                      <th>
+                        <Button color="link" size="sm">
+                          X
+                        </Button>
+                      </th>
+                    </tr>
+                  );
+                })}
               </tbody>
             </Table>
           </Container>
@@ -40,4 +48,4 @@ const Cuenta = (props) => {
   );
 };
 
-export default Cuenta;
+export default CuentasTabla;
