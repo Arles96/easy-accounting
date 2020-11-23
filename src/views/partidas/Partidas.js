@@ -65,7 +65,7 @@ class Partidas extends React.Component {
     if (this.state.tipo === "Debe") {
       this.state.data_debe.push({
         idAccount: this.state.codigo_cuenta,
-        number: contadorPartida,
+        numberAccount: contadorPartida,
         nameAccount: this.state.nombre_cuenta,
         money: parseInt(this.state.cantidad, 10),
         description: this.state.descripcion_cuenta,
@@ -73,7 +73,7 @@ class Partidas extends React.Component {
     } else {
       this.state.data_haber.push({
         idAccount: this.state.codigo_cuenta,
-        number: contadorPartida,
+        numberAccount: contadorPartida,
         nameAccount: this.state.nombre_cuenta,
         money: parseInt(this.state.cantidad, 10),
         description: this.state.descripcion_cuenta,
