@@ -103,7 +103,6 @@ class Partidas extends React.Component {
       acum_debe += item.money;
     });
     if (acum_haber === acum_debe && acum_haber !== 0 && acum_debe !== 0) {
-      console.log(contadorPartida);
       addAccountOperation({
         idExercise: contadorPartida,
         number: contadorPartida,
