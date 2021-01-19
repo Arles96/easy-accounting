@@ -20,7 +20,7 @@ var DatePicker = require("reactstrap-date-picker");
 
 var contadorPartida = 1;
 
-class Partidas extends React.Component {
+class Editar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -156,6 +156,7 @@ class Partidas extends React.Component {
     return (
       <div>
         <Header />
+        <h1>{this.props}</h1>
         <Container className="mt--8" fluid>
           {this.state.validar ? <Alerta /> : ""}
           <Row>
@@ -486,4 +487,4 @@ class Partidas extends React.Component {
   }
 }
 
-export default Partidas;
+export default Editar;

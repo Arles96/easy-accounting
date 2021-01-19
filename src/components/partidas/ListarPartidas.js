@@ -1,7 +1,8 @@
 import React from "react";
 
-import { Card, CardHeader, Table } from "reactstrap";
+import { Card, CardHeader, Table, Button, Container } from "reactstrap";
 import { toPisto } from "../utils";
+import { deleteAccountOperation } from "../../api/accountBookApi";
 
 class ListarPartidas extends React.Component {
   constructor(props) {
@@ -10,6 +11,17 @@ class ListarPartidas extends React.Component {
       partida: this.props.partida,
     };
   }
+
+  handleDelete = () => {
+    console.log("ELID", this.state.partida._id);
+    deleteAccountOperation("9e4cbdab-d799-4be3-bf50-34b0c349286e")
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   render() {
     const partida = this.state.partida;
@@ -82,6 +94,20 @@ class ListarPartidas extends React.Component {
             </tbody>
           </Table>
         </Card>
+        <br></br>
+        <Container fluid>
+          <a
+            href="/admin/partidas"
+            className="btn btn-secondary btn-lg active"
+            role="button"
+            aria-pressed="true"
+          >
+            Editar
+          </a>
+          <Button color="danger" size="md" onClick={this.handleDelete}>
+            Eliminar
+          </Button>
+        </Container>
       </div>
     );
   }

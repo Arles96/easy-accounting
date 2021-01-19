@@ -1,20 +1,8 @@
 import React from "react";
-import {
-  Button,
-  Card,
-  CardHeader,
-  CardBody,
-  FormGroup,
-  Form,
-  Input,
-  Container,
-  Row,
-  Col,
-  Table,
-} from "reactstrap";
+import { Container } from "reactstrap";
 import Header from "components/Headers/Header.js";
 import ListarPartida from "components/partidas/ListarPartidas.js";
-
+import { getAccountsOperations } from "../../api/accountBookApi";
 const testData = [
   {
     id: "1",
@@ -78,11 +66,22 @@ class Listar extends React.Component {
     };
   }
 
+  handleButton = () => {
+    getAccountsOperations(500)
+      .then((res) => {
+        console.log("EL RES", res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   render() {
     return (
       <>
         <div>
           <Header />
+          <button onClick={this.handleButton}>El boton</button>
           <Container className="mt--8" fluid>
             {this.state.partidas.map((partida) => (
               <ListarPartida partida={partida} />
