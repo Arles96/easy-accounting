@@ -40,27 +40,61 @@ import {
 } from "variables/charts.js";
 
 import Header from "components/Headers/Header.js";
-import Exercises from "config/ExerciseDb";
+import { AddExercise, getExercises, deleteExercises } from '../../api/exercisesApi';
+
+
 
 class Exercise extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             activeNav: 1,
-            chartExample1Data: "data1"
+            chartExample1Data: "data1",
+            name: '',
+            description: '',
+            ejercicios: []
         };
         if (window.Chart) {
             parseOptions(Chart, chartOptions());
         }
     }
-    toggleNavs = (e, index) => {
-        e.preventDefault();
+    save = () => {
+        try {
+            AddExercise({ title: this.state.name, description: this.state.description }).then(response => {
+
+            })
+            this.list()
+
+        }
+        catch (error) {
+            console.log(error)
+        }
+    }
+    list = () => {
+        try {
+            getExercises()
+                .then((data) => {
+                    this.setState({ ejercicios: data.data.rows });
+                    console.log(data.data.rows)
+                })
+
+        }
+        catch (error) {
+            console.log(error)
+        }
+    }
+
+    componentDidMount() {
+        this.list()
+    }
+    handleChange = (e) => {
+        const { name, value } = e.target;
         this.setState({
-            activeNav: index,
-            chartExample1Data:
-                this.state.chartExample1Data === "data1" ? "data2" : "data1"
-        });
-    };
+            [name]: value
+        })
+        console.log(value)
+    }
+
     render() {
         return (
             <>
@@ -72,7 +106,7 @@ class Exercise extends React.Component {
                             <Card className="shadow">
                                 <CardHeader className="border-0">
                                     <Row className="align-items-center">
-                                        
+
                                         <CardBody>
                                             <Form>
                                                 <h6 className="heading-small text-muted mb-4">
@@ -92,12 +126,15 @@ class Exercise extends React.Component {
                                                                     className="form-control-alternative"
                                                                     defaultValue="Nombre del ejercicio"
                                                                     id="input-username"
-                                                                    placeholder="Username"
+                                                                    placeholder="Nombre"
                                                                     type="text"
+                                                                    name="name"
+                                                                    value={this.state.name}
+                                                                    onChange={this.handleChange}
                                                                 />
                                                             </FormGroup>
                                                         </Col>
-                                                    
+
                                                         <Col md="12">
                                                             <FormGroup>
                                                                 <label
@@ -110,8 +147,12 @@ class Exercise extends React.Component {
                                                                     className="form-control-alternative"
                                                                     defaultValue="Descripción del nuevo ejercicio"
                                                                     id="input-address"
-                                                                    placeholder="Home Address"
+                                                                    placeholder="Descripción"
                                                                     type="text"
+                                                                    name="description"
+                                                                    value={this.state.description}
+                                                                    onChange={this.handleChange}
+
                                                                 />
                                                             </FormGroup>
                                                         </Col>
@@ -122,16 +163,17 @@ class Exercise extends React.Component {
                                         <div className="col text-right">
                                             <Button
                                                 color="primary"
-                                                href="#pablo"
-                                                onClick={e => e.preventDefault()}
+                                                href=""
+                                                onClick={this.save}
                                                 size="med"
                                             >
                                                 Añadir
-                      </Button>
+                                            </Button>
                                         </div>
                                     </Row>
                                 </CardHeader>
                                 <Table className="align-items-center table-flush" responsive>
+
                                     <thead className="thead-light">
                                         <tr>
                                             <th scope="col">#</th>
@@ -140,21 +182,21 @@ class Exercise extends React.Component {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Ejercicio 1 </td>
-                                            <td>El comercio de don Juan</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Ejercicio 2 </td>
-                                            <td>La repostería Ana</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>Ejercicio 3 </td>
-                                            <td>Farmacia El Ahorrito</td>
-                                        </tr>
+                                        {this.state.ejercicios.map((eje, i) => {
+                                            var str1 = '#'
+                                            var res = str1.concat(eje.id);
+                                            return (
+                                                <tr >
+                                                    <td scope="row" key={i}>{i}</td>
+                                                    <td>
+                                                        <a href={res}>
+                                                            {eje.doc.title} 
+                                                        </a>
+                                                    </td>
+                                                        <td>{eje.doc.description}</td>
+                                                </tr>
+                                            );
+                                        })}
                                     </tbody>
                                 </Table>
                             </Card>
