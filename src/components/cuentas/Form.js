@@ -22,7 +22,7 @@ const countForm = () => {
             <Col md="6">
               <FormGroup>
                 <label className="form-control-label" htmlFor="nombre_cuenta">
-                  Nombre de la Cuenta
+                  <strong>Nombre de la Cuenta</strong>
                 </label>
                 <Input
                   className="form-control-alternative"
@@ -34,7 +34,7 @@ const countForm = () => {
             <Col md="6">
               <FormGroup>
                 <label className="form-control-label" htmlFor="numero_cuenta">
-                  Número de Cuenta
+                  <strong>Código de Cuenta</strong>
                 </label>
                 <Input
                   className="form-control-alternative"
@@ -51,7 +51,7 @@ const countForm = () => {
                   className="form-control-label"
                   htmlFor="descripcion_cuenta"
                 >
-                  Descripción
+                  <strong>Descripción</strong>
                 </label>
                 <Input
                   className="form-control-alternative"
@@ -65,7 +65,7 @@ const countForm = () => {
             <Col md="4">
               <FormGroup>
                 <label className="form-control-label" htmlFor="cantidad">
-                  Cantidad
+                  <strong>Cantidad</strong>
                 </label>
                 <Input
                   className="form-control-alternative"
@@ -77,7 +77,7 @@ const countForm = () => {
             <Col md="2">
               <FormGroup>
                 <label className="form-control-label" htmlFor="cantidad">
-                  {}
+                  {"  "}
                 </label>
                 <Input type="select" name="select">
                   <option>Debe</option>
