@@ -25,6 +25,7 @@ import TablaT from "../../components/resultados/TablaT";
 import BalanzaComprobacion from "../../components/resultados/BalanzaComprobacion";
 import EstadoResultado from "components/resultados/EstadoResultado";
 import BalanceGeneral from "components/resultados/BalanceGeneral";
+import {  Link } from "react-router-dom";
 import {
   generateMajorization,
   generateComprobationBalance,
@@ -124,12 +125,16 @@ class Tables extends React.Component {
   }
 
   render() {
+    const { history } = this.props;
     return (
       <>
         <Header />
         <Container fluid className="botones-resultados">
+          <Button color="primary" onClick={() => history.push(`/admin/listar-partida/${this.state.idEjercicio}`)}  size="md">
+            <i className="ni ni-bold-left"></i> Atrás
+          </Button>
           <Button color="primary" onClick={() => this.toggle(1)} size="md">
-            Tablas T
+            Cuentas T
           </Button>
           <Button color="primary" onClick={() => this.toggle(2)} size="md">
             Balanza de Comprobacion

@@ -24,7 +24,7 @@ const TablaT = ({ datosTabla }) => {
     <div className="table-panel">
       <Card className="table-card">
         <CardHeader>
-          <h3>{`${nameAccount} ${code}`}</h3>
+          <h3>{`${nameAccount} #${code}`}</h3>
         </CardHeader>
         <Table responsive className="tabla-t">
           <thead>

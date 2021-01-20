@@ -83,7 +83,7 @@ class Partidas extends React.Component {
         description: this.state.descripcion_cuenta,
       });
     }
-    
+
     this.setState({
       nombre_cuenta: "",
       cantidad: "",
@@ -158,6 +158,7 @@ class Partidas extends React.Component {
   };
 
   render() {
+    const { history } = this.props;
     return (
       <div>
         <Header />
@@ -167,6 +168,9 @@ class Partidas extends React.Component {
             <Col className="order-xl-1 " xl="">
               <Card className="bg-light shadow">
                 <CardHeader className="bg-white border-0">
+                <Button color="primary" onClick={() => history.push(`/admin/listar-partida/${this.state.idEjercicio}`)} size="md">
+                  <i className="ni ni-bold-left"></i> Atrás
+                </Button>
                   <Row className="align-items-center">
                     <Col xs="8">
                       <h3 className="mb-0">Libro Diario</h3>

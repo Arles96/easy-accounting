@@ -14,7 +14,7 @@ class ListarPartidas extends React.Component {
 
   handleDelete = () => {
     console.log("ELID", this.state.partida._id);
-    deleteAccountOperation("9e4cbdab-d799-4be3-bf50-34b0c349286e")
+    deleteAccountOperation(this.state.partida._id)
       .then((res) => {
         console.log(res);
       })
