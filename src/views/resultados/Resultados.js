@@ -31,17 +31,16 @@ import {
 } from "../../api/accountBookApi";
 
 class Tables extends React.Component {
-  constructor() {
-    super();
-    //const { cuentas } = props;
-    const TData = generateMajorization(1).then((response) => {
-      console.log("Entra: ", response);
-    });
-
+  constructor(props) {
+    super(props);
     this.toggle = this.toggle.bind(this);
+    const { match } = this.props;
+    const { params } = match;
+    const { id } = params;
     this.state = {
+      idEjercicio:id,
       activeTab: 1,
-      prueba: [],
+      datosTabla: [],
       balanzaComprobacion: {
         arrCuentas: [],
         totalCreditMov: 0,
@@ -53,7 +52,7 @@ class Tables extends React.Component {
   }
 
   componentDidMount() {
-    generateMajorization(1).then((response) => {
+    generateMajorization(this.state.idEjercicio).then((response) => {
       console.log("Entró ", response);
       console.log("resp[0] ", response.data[0]);
       const arr = response.data.map(
@@ -99,10 +98,10 @@ class Tables extends React.Component {
           };
         }
       );
-      this.setState({ prueba: arr });
+      this.setState({ datosTabla: arr });
       console.log("Estado: ", this.state);
     });
-    generateComprobationBalance(1).then((response) => {
+    generateComprobationBalance(this.state.idEjercicio).then((response) => {
       if (!response.status || response.status !== "success") {
         console.log("Error Balanza de Comprobacion: ", response);
       }
@@ -154,7 +153,7 @@ class Tables extends React.Component {
           <div className="card-grid">
             {
               {
-                1: this.state.prueba.map((datosTabla) => (
+                1: this.state.datosTabla.map((datosTabla) => (
                   <TablaT
                     key={datosTabla.nameAccount + "tt"}
                     datosTabla={datosTabla}

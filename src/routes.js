@@ -27,13 +27,6 @@ import ListarPartidas from "views/partidas/Listar.js";
 
 var routes = [
   {
-    path: "/index",
-    name: "Dashboard",
-    icon: "ni ni-tv-2 text-primary",
-    component: Index,
-    layout: "/admin",
-  },
-  {
     path: "/catalogue",
     name: "Catálogo de Cuentas",
     icon: "ni ni-collection text-blue",
@@ -41,17 +34,17 @@ var routes = [
     layout: "/admin",
   },
   {
-    path: "/partidas",
-    name: "Partidas",
-    icon: "ni ni-bullet-list-67 text-red",
-    component: Partidas,
-    layout: "/admin",
-  },
-  {
     path: "/exercises",
     name: "Ejercicios",
     icon: "ni ni-map-big text-yellow",
     component: Exercise,
+    layout: "/admin",
+  },
+/*   {
+    path: "/partidas/:id",
+    name: "Partidas",
+    icon: "ni ni-bullet-list-67 text-red",
+    component: Partidas,
     layout: "/admin",
   },
   {
@@ -62,11 +55,11 @@ var routes = [
     layout: "/admin",
   },
   {
-    path: "/listar-partida",
+    path: "/listar-partida/:id",
     name: "Listar",
     icon: "ni ni-laptop text-green",
     component: ListarPartidas,
     layout: "/admin",
-  },
+  }, */
 ];
 export default routes;

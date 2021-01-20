@@ -23,6 +23,9 @@ import { Container } from "reactstrap";
 import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import AdminFooter from "components/Footers/AdminFooter.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
+import Resultados from "views/resultados/Resultados.js";
+import Partidas from "views/partidas/Partidas.js";
+import ListarPartidas from "views/partidas/Listar.js";
 
 import routes from "routes.js";
 
@@ -57,7 +60,7 @@ class Admin extends React.Component {
         return routes[i].name;
       }
     }
-    return "Brand";
+    return "Contabilidad";
   };
   render() {
     return (
@@ -73,7 +76,19 @@ class Admin extends React.Component {
           />
           <Switch>
             {this.getRoutes(routes)}
-            <Redirect from="*" to="/admin/index" />
+            <Route
+            path={'/admin/partidas/:id'}
+            component={Partidas}
+          />
+          <Route
+            path={'/admin/resultados/:id'}
+            component={Resultados}
+          />
+          <Route
+            path={'/admin/listar-partida/:id'}
+            component={ListarPartidas}
+          />
+            <Redirect from="*" to="/admin/catalogue" />
           </Switch>
           <Container fluid>
             <AdminFooter />

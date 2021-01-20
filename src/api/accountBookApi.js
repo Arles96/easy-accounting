@@ -139,8 +139,8 @@ export const getAccountsOperations = idExercise => new Promise((resolve, reject)
     }).then(result => {
       const data = [];
       result.rows.forEach(doc => {
-        if (doc.idExercise === idExercise) {
-          data.push(data);
+        if (doc.doc.idExercise === idExercise) {
+          data.push(doc.doc);
         }
       });
       resolve({

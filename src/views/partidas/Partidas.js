@@ -23,7 +23,11 @@ var contadorPartida = 1;
 class Partidas extends React.Component {
   constructor(props) {
     super(props);
+    const { match } = this.props;
+    const { params } = match;
+    const { id } = params;
     this.state = {
+      idEjercicio: id,
       nombre_cuenta: "",
       cantidad: "",
       tipo: "Debe",
@@ -79,6 +83,7 @@ class Partidas extends React.Component {
         description: this.state.descripcion_cuenta,
       });
     }
+    
     this.setState({
       nombre_cuenta: "",
       cantidad: "",
@@ -104,7 +109,7 @@ class Partidas extends React.Component {
     });
     if (acum_haber === acum_debe && acum_haber !== 0 && acum_debe !== 0) {
       addAccountOperation({
-        idExercise: 500,
+        idExercise: this.state.idEjercicio,
         number: contadorPartida,
         description: this.state.descripcion_cuenta,
         operationDate: this.state.fecha,
@@ -210,7 +215,7 @@ class Partidas extends React.Component {
                               className="form-control-label"
                               htmlFor="partida_descripcion"
                             >
-                              <strong>Descripción</strong>
+                              <strong>Descripción de la Partida</strong>
                             </label>
                             <Input
                               className="form-control-alternative"
@@ -453,7 +458,7 @@ class Partidas extends React.Component {
                               className="form-control-label"
                               htmlFor="cuenta_descripcion"
                             >
-                              <strong>Descripción</strong>
+                              <strong>Descripción de la Cuenta</strong>
                             </label>
                             <Input
                               className="form-control-alternative"

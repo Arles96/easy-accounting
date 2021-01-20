@@ -134,7 +134,7 @@ class Exercise extends React.Component {
                                                             </FormGroup>
                                                         </Col>
 
-                                                        <Col md="12">
+                                                        <Col md="6">
                                                             <FormGroup>
                                                                 <label
                                                                     className="form-control-label"
@@ -155,20 +155,21 @@ class Exercise extends React.Component {
                                                                 />
                                                             </FormGroup>
                                                         </Col>
+                                                        <div className="col">
+                                                            <Button
+                                                                color="primary"
+                                                                href=""
+                                                                onClick={this.save}
+                                                                size="med"
+                                                            >
+                                                                Añadir
+                                            </Button>
+                                                        </div>
                                                     </Row>
                                                 </div>
                                             </Form>
                                         </CardBody>
-                                        <div className="col text-right">
-                                            <Button
-                                                color="primary"
-                                                href=""
-                                                onClick={this.save}
-                                                size="med"
-                                            >
-                                                Añadir
-                                            </Button>
-                                        </div>
+
                                     </Row>
                                 </CardHeader>
                                 <Table className="align-items-center table-flush" responsive>
@@ -178,6 +179,7 @@ class Exercise extends React.Component {
                                             <th scope="col">#</th>
                                             <th scope="col">Nombre del Ejercicio</th>
                                             <th scope="col">Descripción</th>
+                                            <th scope="col"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -188,11 +190,16 @@ class Exercise extends React.Component {
                                                 <tr >
                                                     <td scope="row" key={i}>{i}</td>
                                                     <td>
-                                                        <a href={res}>
-                                                            {eje.doc.title} 
-                                                        </a>
+                                                        {eje.doc.title}
                                                     </td>
-                                                        <td>{eje.doc.description}</td>
+                                                    <td>{eje.doc.description}</td>
+                                                    <td><Button
+                                                        color="info"
+                                                        href={`/admin/listar-partida/${eje.id}`}
+                                                        size="med"
+                                                    >
+                                                        Listar
+                                            </Button></td>
                                                 </tr>
                                             );
                                         })}
