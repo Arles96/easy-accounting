@@ -189,6 +189,11 @@ export const deleteAccountOperation = _id => new Promise((resolve, reject) => {
   if (_id) {
     AccountBook.get(_id).then(res => {
       return AccountBook.remove(res);
+    }).then(() => {
+      resolve({
+        status: 'success',
+        info: 'Se elimino el registro',
+      });
     }).catch(() => {
       reject({
         status: 'error',
