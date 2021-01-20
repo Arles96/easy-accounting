@@ -17,6 +17,7 @@ class ListarPartidas extends React.Component {
     deleteAccountOperation(this.state.partida._id)
       .then((res) => {
         console.log(res);
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err);
