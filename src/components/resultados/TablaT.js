@@ -6,17 +6,25 @@ import { toPisto } from "../../components/utils";
 // debe / haber
 // {
 //   partida: "",
-//   valor: ""
+//   valor: ""j
 // }
 
-const TablaT = ({datosTabla}) => {
-  const { cuenta, filas, totalDebe, totalHaber, total } = datosTabla;
+const TablaT = ({ datosTabla }) => {
+  const {
+    nameAccount,
+    code,
+    rows,
+    subtotalDebit,
+    subtotalCredit,
+    sectionAccount,
+    total,
+  } = datosTabla;
 
   return (
     <div className="table-panel">
       <Card className="table-card">
         <CardHeader>
-          <h3>{cuenta}</h3>
+          <h3>{`${nameAccount} ${code}`}</h3>
         </CardHeader>
         <Table responsive className="tabla-t">
           <thead>
@@ -28,12 +36,14 @@ const TablaT = ({datosTabla}) => {
             </tr>
           </thead>
           <tbody>
-            {filas.map((fila, index) => (
-              <tr key={"fila" + index + " " + cuenta}>
-                {fila.debe ? (
+            {rows.map((fila, index) => (
+              <tr key={"fila" + index + " " + nameAccount}>
+                {fila.debit ? (
                   <>
-                    <td>{fila.debe.partida}</td>
-                    <td className="center-left-td">{toPisto(fila.debe.valor)}</td>
+                    <td>{`part# ${fila.debit.numberItem}`}</td>
+                    <td className="center-left-td">
+                      {toPisto(fila.debit.money)}
+                    </td>
                   </>
                 ) : (
                   <>
@@ -41,10 +51,10 @@ const TablaT = ({datosTabla}) => {
                     <td className="center-left-td" />
                   </>
                 )}
-                {fila.haber ? (
+                {fila.credit ? (
                   <>
-                    <td>{toPisto(fila.haber.valor)}</td>
-                    <td>{fila.haber.partida}</td>
+                    <td>{toPisto(fila.credit.money)}</td>
+                    <td>{`part# ${fila.credit.numberItem}`}</td>
                   </>
                 ) : (
                   <>
@@ -54,25 +64,31 @@ const TablaT = ({datosTabla}) => {
                 )}
               </tr>
             ))}
-            {filas.length > 1 ? (
+            {rows.length > 1 ? (
               <tr className="bottom-t">
                 <td />
-                {totalDebe > 0 ? (
-                  <td className="center-left-td">{toPisto(totalDebe)}</td>
+                {subtotalDebit > 0 ? (
+                  <td className="center-left-td">{toPisto(subtotalDebit)}</td>
                 ) : (
                   <td className="center-left-td" />
                 )}
-                {totalHaber > 0 ? <td>{toPisto(totalHaber)}</td> : <td />}
+                {subtotalCredit > 0 ? (
+                  <td>{toPisto(subtotalCredit)}</td>
+                ) : (
+                  <td />
+                )}
                 <td />
               </tr>
             ) : (
               <></>
             )}
             <tr>
-              {total >= 0 ? (
+              {sectionAccount === "debit" ? (
                 <>
                   <td className="total-t" />
-                  <td className="center-left-td total-t">{toPisto(total)}</td>
+                  <td className="center-left-td total-t">{`Saldos: ${toPisto(
+                    total
+                  )}`}</td>
                   <td />
                   <td />
                 </>
@@ -80,7 +96,7 @@ const TablaT = ({datosTabla}) => {
                 <>
                   <td />
                   <td />
-                  <td className="total-t">{toPisto(-total)}</td>
+                  <td className="total-t">{`Saldos: ${toPisto(total)}`}</td>
                   <td className="total-t" />
                 </>
               )}

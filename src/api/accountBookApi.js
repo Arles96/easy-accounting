@@ -260,7 +260,7 @@ export const generateMajorization = idExercise => new Promise((resolve, reject) 
         resolve({
           status: 'success',
           info: 'Se realizo la mayorización exitosamente',
-          data: arrayMajorization,
+          data: arrayMajorization
         });
       }).catch(error => {
         reject(error);
