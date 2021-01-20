@@ -187,15 +187,12 @@ export const getOneAccountOperation = _id => new Promise((resolve, reject) => {
 
 export const deleteAccountOperation = _id => new Promise((resolve, reject) => {
   if (_id) {
-    AccountBook.remove({ _id }).then(() => {
-      resolve({
-        status: 'succes',
-        info: 'Se elimino el registro de maner exitosa'
-      });
+    AccountBook.get(_id).then(res => {
+      return AccountBook.remove(res);
     }).catch(() => {
       reject({
         status: 'error',
-        info: 'Error al eliminar el registro'
+        info: 'Error al eliminar la partida'
       });
     });
   } else {
