@@ -245,8 +245,8 @@ export const generateMajorization = idExercise => new Promise((resolve, reject) 
             const subtotalCredit = totalSection(credit);
             const total = subtotalDebit - subtotalCredit;
             const doc = {
-              nameAccount: account.name,
-              code: account.code,
+              nameAccount: account.doc.name,
+              code: account.doc.code,
               debit: debit,
               credit: credit,
               subtotalDebit: subtotalDebit,
