@@ -222,7 +222,7 @@ export const generateMajorization = idExercise => new Promise((resolve, reject) 
             const { arrayCreditAccounts, arrayDebitAccounts } = item;
             // agregando la seccion de credito de una cuenta
             arrayCreditAccounts.forEach(accountCredit => {
-              if (accountCredit.numberAccount === account.code) {
+              if (accountCredit.idAccount === account.doc.code) {
                 credit.push({
                   numberItem: item.number,
                   money: parseFloat(accountCredit.money)
@@ -231,7 +231,7 @@ export const generateMajorization = idExercise => new Promise((resolve, reject) 
             });
             // agregando la seccion de debito de una cuenta
             arrayDebitAccounts.forEach(accountDebit => {
-              if (accountDebit.numberAccount === account.code) {
+              if (accountDebit.idAccount === account.doc.code) {
                 debit.push({
                   numberItem: item.number,
                   money: parseFloat(accountDebit.money)
