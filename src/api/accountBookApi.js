@@ -318,3 +318,216 @@ export const generateComprobationBalance = (idExercise) => {
     });
   });
 }
+
+const findAccountValue = (data, paramCode, paramSectionAccount) => {
+  let result = 0;
+  data.forEach(doc => {
+    const { code, sectionAccount, total } = doc;
+    if (code === paramCode && sectionAccount === paramSectionAccount) {
+      result = total;
+    }
+  });
+  return result;
+}
+
+const percentageTaxRent = 0.25;
+const exentTaxSolidary = 1000000;
+const percentageTaxSolidary = 0.05;
+
+export const generateStatementofIncome = (idExercise) => {
+  return new Promise((resolve, reject) => {
+    if (idExercise) {
+      generateComprobationBalance(idExercise).then(res => {
+        const result = [];
+        const { data } = res;
+        /* Seccion de Venta */
+        // ventas
+        const sales = findAccountValue(data, '4001', 'credit');
+        result.push({
+          name: 'Ventas Totales',
+          col4: sales,
+        });
+        // descuentos sobre venta
+        const disccountSales = findAccountValue(data, '5003', 'debit');
+        result.push({
+          name: 'Descuentos sobre Venta',
+          col3: disccountSales,
+        });
+        // rebajas sobre venta
+        const reductionSales = findAccountValue(data, '5002', 'debit');
+        result.push({
+          name: 'Rebajas sobre Venta',
+          col3: reductionSales,
+        });
+        // devoluciones sobre venta
+        const returnsSales = findAccountValue(data, '5001', 'debit');
+        const subtotalReturnsSales = disccountSales + reductionSales + returnsSales;
+        result.push({
+          name: 'Devoluciones sobre Venta',
+          col3: returnsSales,
+          col4: subtotalReturnsSales,
+        });
+        const totalSales = sales - subtotalReturnsSales;
+        result.push({
+          name: 'Ventas netas',
+          col4: totalSales
+        });
+        /* Fin de la Seccion de Venta */
+        result.push({
+          name: 'Costo de Ventas',
+          title: true,
+        });
+        /* Seccion de costos de Ventas */
+        // compras
+        const purchases = findAccountValue(data, '5004', 'debit');
+        result.push({
+          name: 'Compras brutas',
+          col1: purchases
+        });
+        // Gasto sobre compra
+        const spendingPurchases = findAccountValue(data, '5005', 'debit');
+        result.push({
+          name: 'Gasto sobre compra',
+          col1: spendingPurchases,
+        });
+        // compras totales
+        const totalPurchases = purchases + spendingPurchases;
+        result.push({
+          name: 'Compras totales',
+          col2: totalPurchases
+        });
+        // descuento sobre compra
+        const disccountPurchases = findAccountValue(data, '4006', 'credit');
+        result.push({
+          name: 'Descuento sobre compra',
+          col1: disccountPurchases,
+        });
+        // Rebajas sobre compra
+        const reductionPurchases = findAccountValue(data, '4004', 'credit');
+        result.push({
+          name: 'Rebajas sobre compra',
+          col1: reductionPurchases,
+        });
+        // Devoluciones sobre compra
+        const returnsPurchases = findAccountValue(data, '4005', 'credit');
+        const subtotalReturnsPurchases = disccountPurchases + reductionPurchases + returnsPurchases;
+        result.push({
+          name: 'Devoluciones sobre compra',
+          col1: returnsPurchases,
+          col2: subtotalReturnsPurchases,
+        });
+        // compras netas
+        const netPurchases = totalPurchases - subtotalReturnsPurchases;
+        result.push({
+          name: 'Compras netas',
+          col3: netPurchases,
+        });
+        // inventario inicial
+        const initalInventory = findAccountValue(data, '1142', 'debit');
+        result.push({
+          name: 'Inventario Inicial',
+          col3: initalInventory,
+        });
+        // Mercaderia disponible
+        const availableInventory = netPurchases + initalInventory;
+        result.push({
+          name: 'Mercaderia disponible para la venta',
+          col3: availableInventory,
+        });
+        // TODO Consultar lo del inventario final
+        // Invetario final
+        const endInventory = findAccountValue(data, '1141', 'debit');
+        result.push({
+          name: 'Inventario final',
+          col3: endInventory,
+        });
+        // Costo de venta
+        const costSale = availableInventory - endInventory;
+        result.push({
+          name: 'Costo de Venta',
+          col4: costSale,
+        });
+        // Utilidad bruta en ventas
+        const utilitySales = totalSales - costSale;
+        result.push({
+          name: utilitySales < 0 ? 'Perdida bruta en ventas' : 'Utilidad bruta en ventas',
+          col4: utilitySales,
+        });
+        /* Final de la seccion de costos de ventas */
+        /* Gastos Operativos */
+        // Gastos administrativos
+        const expenseAdministration = findAccountValue(data, '5006', 'debit');
+        result.push({
+          name: 'Gastos Administrativos',
+          col4: expenseAdministration,
+        });
+        // Utilidad operativa
+        const utilityOperative = utilitySales - expenseAdministration;
+        result.push({
+          name: 'Utilidad Operativa',
+          col4: utilityOperative,
+        });
+        // Productos Financieros
+        const productFinance = findAccountValue(data, '4002', 'credit');
+        result.push({
+          name: 'Productos Financieros',
+          col3: productFinance,
+        });
+        // otros Productos
+        const otherproduct = findAccountValue(data, '4003', 'credit');
+        const totalProduct = productFinance + otherproduct;
+        result.push({
+          name: 'Otros Productos',
+          col3: otherproduct,
+          col4: totalProduct,
+        });
+        // Utilidad antes del impuesto
+        const utilityBeforeTax = utilitySales + totalProduct;
+        result.push({
+          name: 'Utilidad del Impuesto',
+          col4: utilityBeforeTax
+        });
+        /* Fin de los Gastos operativos */
+        /* Seccion del impuesto */
+        result.push({
+          name: 'Impuestos',
+          title: true,
+        });
+        // Impuesto sobre la renta
+        const taxRent = utilityBeforeTax * percentageTaxRent;
+        result.push({
+          name: 'Impuesto sobre la Renta',
+          col3: taxRent,
+        });
+        // Impuesto solidario
+        let taxSolidary = 0;
+        if (utilityBeforeTax > exentTaxSolidary) {
+          taxSolidary = (utilityBeforeTax - exentTaxSolidary) * percentageTaxSolidary;
+        }
+        const totalTax = taxRent + taxSolidary;
+        result.push({
+          name: 'Impuesto aportacion Solidaria',
+          col3: taxSolidary,
+          col4: totalTax,
+        });
+        // Utilidad antes de la reserva
+        const utilityReservation = utilityBeforeTax - totalTax;
+        result.push({
+          name: 'Utilidad del ejercicio',
+          col4: utilityReservation,
+        });
+        /* Fin de la seccion del impuesto */
+        resolve({
+          status: 'success',
+          info: 'Se genero el estado de resultado de manera exitosa',
+          data: result
+        });
+      }).catch(error => reject(error));
+    } else {
+      reject({
+        status: 'error',
+        info: 'Error el identificador del ejercicio no esta definido',
+      });
+    }
+  })
+}
