@@ -137,7 +137,9 @@ class Editar extends React.Component {
       })
         .then((res) => {
           console.log("Modificar partida:", res);
-          this.props.push(`/admin/listar-partida/${this.state.idEjercicio}`);
+          window.location.replace(
+            `/admin/listar-partida/${this.state.idEjercicio}`
+          );
         })
         .catch((err) => {
           console.log("ERROR:", err);
