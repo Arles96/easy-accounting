@@ -89,6 +89,7 @@ export const updateAccountOperation = (_id, {
   if (idExercise && validArrayAccount(arrayCreditAccounts) && validArrayAccount(arrayDebitAccounts)) {
     AccountBook.get(_id).then(result => {
       return AccountBook.put({
+        _id: result._id,
         idExercise: idExercise,
         number: number,
         description: description,
