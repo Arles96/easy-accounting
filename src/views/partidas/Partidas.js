@@ -119,6 +119,9 @@ class Partidas extends React.Component {
       })
         .then((res) => {
           console.log("Agregar partida:", res);
+          window.location.replace(
+            `/admin/listar-partida/${this.state.idEjercicio}`
+          );
         })
         .catch((err) => {
           console.log("ERROR:", err);
