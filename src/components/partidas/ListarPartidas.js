@@ -98,7 +98,7 @@ class ListarPartidas extends React.Component {
         <br></br>
         <Container fluid>
           <a
-            href="/admin/partidas"
+            href={`/admin/editar-partida/${partida.idExercise}/${partida._id}`}
             className="btn btn-secondary btn-lg active"
             role="button"
             aria-pressed="true"

@@ -62,6 +62,7 @@ class Partidas extends React.Component {
   };
   handlerPartidaDescripcion = (event) => {
     this.setState({ descripcion_partida: event.target.value });
+    console.log(this.state.descripcion_partida);
   };
 
   handleSubmit = (event) => {
@@ -111,7 +112,7 @@ class Partidas extends React.Component {
       addAccountOperation({
         idExercise: this.state.idEjercicio,
         number: contadorPartida,
-        description: this.state.descripcion_cuenta,
+        description: this.state.descripcion_partida,
         operationDate: this.state.fecha,
         arrayCreditAccounts: this.state.data_haber,
         arrayDebitAccounts: this.state.data_debe,
@@ -168,9 +169,17 @@ class Partidas extends React.Component {
             <Col className="order-xl-1 " xl="">
               <Card className="bg-light shadow">
                 <CardHeader className="bg-white border-0">
-                <Button color="primary" onClick={() => history.push(`/admin/listar-partida/${this.state.idEjercicio}`)} size="md">
-                  <i className="ni ni-bold-left"></i> Atrás
-                </Button>
+                  <Button
+                    color="primary"
+                    onClick={() =>
+                      history.push(
+                        `/admin/listar-partida/${this.state.idEjercicio}`
+                      )
+                    }
+                    size="md"
+                  >
+                    <i className="ni ni-bold-left"></i> Atrás
+                  </Button>
                   <Row className="align-items-center">
                     <Col xs="8">
                       <h3 className="mb-0">Libro Diario</h3>
