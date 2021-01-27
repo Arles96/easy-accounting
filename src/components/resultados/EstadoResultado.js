@@ -3,12 +3,6 @@ import React from "react";
 import { Card, CardHeader, Table } from "reactstrap";
 import { toPisto } from "../../components/utils";
 
-// debe / haber
-// {
-//   partida: "",
-//   valor: ""
-// }
-
 const EstadoResultado = ({ data = [] }) => {
   return (
     <div className="table-panel estados-resultados-panel">
@@ -37,10 +31,10 @@ const EstadoResultado = ({ data = [] }) => {
                 >
                   {estado.name}
                 </td>
-                <td>{estado.col1 ? estado.col1 : ""}</td>
-                <td>{estado.col2 ? estado.col2 : ""}</td>
-                <td>{estado.col3 ? estado.col3 : ""}</td>
-                <td>{estado.col4 ? estado.col4 : ""}</td>
+                <td>{estado.col1 ? toPisto(estado.col1) : ""}</td>
+                <td>{estado.col2 ? toPisto(estado.col2) : ""}</td>
+                <td>{estado.col3 ? toPisto(estado.col3) : ""}</td>
+                <td>{estado.col4 ? toPisto(estado.col4) : ""}</td>
               </tr>
             ))}
           </tbody>
