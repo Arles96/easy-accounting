@@ -514,6 +514,7 @@ export const generateStatementofIncome = (idExercise) => {
         const utilityReservation = utilityBeforeTax - totalTax;
         result.push({
           name: 'Utilidad del ejercicio',
+          title: true,
           col4: utilityReservation,
         });
         /* Fin de la seccion del impuesto */
