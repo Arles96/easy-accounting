@@ -25,10 +25,11 @@ import TablaT from "../../components/resultados/TablaT";
 import BalanzaComprobacion from "../../components/resultados/BalanzaComprobacion";
 import EstadoResultado from "components/resultados/EstadoResultado";
 import BalanceGeneral from "components/resultados/BalanceGeneral";
-import {  Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   generateMajorization,
   generateComprobationBalance,
+  generateStatementofIncome,
 } from "../../api/accountBookApi";
 
 class Tables extends React.Component {
@@ -39,7 +40,7 @@ class Tables extends React.Component {
     const { params } = match;
     const { id } = params;
     this.state = {
-      idEjercicio:id,
+      idEjercicio: id,
       activeTab: 1,
       datosTabla: [],
       balanzaComprobacion: {
@@ -49,6 +50,7 @@ class Tables extends React.Component {
         totalCreditSald: 0,
         totalDebitSald: 0,
       },
+      estadoResultados: [],
     };
   }
 
@@ -116,6 +118,14 @@ class Tables extends React.Component {
         },
       });
     });
+    generateStatementofIncome(this.state.idEjercicio).then((response) => {
+      if (!response.status || response.status !== "success") {
+        console.log("Error Estado de Resultados: ", response);
+      }
+      this.setState({
+        estadoResultados: response.data,
+      });
+    });
   }
 
   toggle(tab) {
@@ -130,7 +140,13 @@ class Tables extends React.Component {
       <>
         <Header />
         <Container fluid className="botones-resultados">
-          <Button color="primary" onClick={() => history.push(`/admin/listar-partida/${this.state.idEjercicio}`)}  size="md">
+          <Button
+            color="primary"
+            onClick={() =>
+              history.push(`/admin/listar-partida/${this.state.idEjercicio}`)
+            }
+            size="md"
+          >
             <i className="ni ni-bold-left"></i> Atrás
           </Button>
           <Button color="primary" onClick={() => this.toggle(1)} size="md">
@@ -167,7 +183,7 @@ class Tables extends React.Component {
                 2: (
                   <BalanzaComprobacion data={this.state.balanzaComprobacion} />
                 ),
-                3: <EstadoResultado />,
+                3: <EstadoResultado data={this.state.estadoResultados} />,
                 4: <BalanceGeneral />,
               }[this.state.activeTab]
             }
