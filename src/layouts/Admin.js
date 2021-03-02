@@ -26,7 +26,7 @@ import Sidebar from "components/Sidebar/Sidebar.js";
 import Resultados from "views/resultados/Resultados.js";
 import Partidas from "views/partidas/Partidas.js";
 import ListarPartidas from "views/partidas/Listar.js";
-
+import EditarPartida from "views/partidas/Editar.js";
 import routes from "routes.js";
 
 class Admin extends React.Component {
@@ -35,7 +35,7 @@ class Admin extends React.Component {
     document.scrollingElement.scrollTop = 0;
     this.refs.mainContent.scrollTop = 0;
   }
-  getRoutes = routes => {
+  getRoutes = (routes) => {
     return routes.map((prop, key) => {
       if (prop.layout === "/admin") {
         return (
@@ -50,7 +50,7 @@ class Admin extends React.Component {
       }
     });
   };
-  getBrandText = path => {
+  getBrandText = (path) => {
     for (let i = 0; i < routes.length; i++) {
       if (
         this.props.location.pathname.indexOf(
@@ -65,10 +65,7 @@ class Admin extends React.Component {
   render() {
     return (
       <>
-        <Sidebar
-          {...this.props}
-          routes={routes}
-        />
+        <Sidebar {...this.props} routes={routes} />
         <div className="main-content" ref="mainContent">
           <AdminNavbar
             {...this.props}
@@ -76,18 +73,16 @@ class Admin extends React.Component {
           />
           <Switch>
             {this.getRoutes(routes)}
+            <Route path={"/admin/partidas/:id"} component={Partidas} />
+            <Route path={"/admin/resultados/:id"} component={Resultados} />
             <Route
-            path={'/admin/partidas/:id'}
-            component={Partidas}
-          />
-          <Route
-            path={'/admin/resultados/:id'}
-            component={Resultados}
-          />
-          <Route
-            path={'/admin/listar-partida/:id'}
-            component={ListarPartidas}
-          />
+              path={"/admin/listar-partida/:id"}
+              component={ListarPartidas}
+            />
+            <Route
+              path={"/admin/editar-partida/:id/:idPartida"}
+              component={EditarPartida}
+            />
             <Redirect from="*" to="/admin/catalogue" />
           </Switch>
           <Container fluid>

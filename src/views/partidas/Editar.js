@@ -1,7 +1,10 @@
 import React from "react";
 import Alerta from "../../components/cuentas/Alerta";
 import Header from "components/Headers/Header.js";
-import { addAccountOperation } from "../../api/accountBookApi";
+import {
+  updateAccountOperation,
+  getOneAccountOperation,
+} from "../../api/accountBookApi";
 import { catalogoCuentas } from "../../components/catalogoCuentas";
 import {
   Button,
@@ -23,7 +26,12 @@ var contadorPartida = 1;
 class Editar extends React.Component {
   constructor(props) {
     super(props);
+    const { match } = this.props;
+    const { params } = match;
+    const { id, idPartida } = params;
     this.state = {
+      idEjercicio: id,
+      idPartida: idPartida,
       nombre_cuenta: "",
       cantidad: "",
       tipo: "Debe",
@@ -36,6 +44,21 @@ class Editar extends React.Component {
       data_debe: [],
       data_haber: [],
     };
+  }
+
+  componentDidMount() {
+    console.log("IDPARTIDA: ", this.state.idPartida);
+    getOneAccountOperation(this.state.idPartida).then((res) => {
+      console.log("RES EDITAR", res);
+      const cuenta = res.data;
+      this.setState({
+        descripcion_partida: cuenta.description,
+        contador: cuenta.number,
+        fecha: cuenta.operationDate,
+        data_haber: cuenta.arrayCreditAccounts,
+        data_debe: cuenta.arrayDebitAccounts,
+      });
+    });
   }
 
   handlerCuentaNombre = (event) => {
@@ -79,6 +102,7 @@ class Editar extends React.Component {
         description: this.state.descripcion_cuenta,
       });
     }
+
     this.setState({
       nombre_cuenta: "",
       cantidad: "",
@@ -103,16 +127,19 @@ class Editar extends React.Component {
       acum_debe += item.money;
     });
     if (acum_haber === acum_debe && acum_haber !== 0 && acum_debe !== 0) {
-      addAccountOperation({
-        idExercise: 500,
+      updateAccountOperation(this.state.idPartida, {
+        idExercise: this.state.idEjercicio,
         number: contadorPartida,
-        description: this.state.descripcion_cuenta,
+        description: this.state.descripcion_partida,
         operationDate: this.state.fecha,
         arrayCreditAccounts: this.state.data_haber,
         arrayDebitAccounts: this.state.data_debe,
       })
         .then((res) => {
-          console.log("Agregar partida:", res);
+          console.log("Modificar partida:", res);
+          window.location.replace(
+            `/admin/listar-partida/${this.state.idEjercicio}`
+          );
         })
         .catch((err) => {
           console.log("ERROR:", err);
@@ -153,16 +180,27 @@ class Editar extends React.Component {
   };
 
   render() {
+    const { history } = this.props;
     return (
       <div>
         <Header />
-        <h1>{this.props}</h1>
         <Container className="mt--8" fluid>
           {this.state.validar ? <Alerta /> : ""}
           <Row>
             <Col className="order-xl-1 " xl="">
               <Card className="bg-light shadow">
                 <CardHeader className="bg-white border-0">
+                  <Button
+                    color="primary"
+                    onClick={() =>
+                      history.push(
+                        `/admin/listar-partida/${this.state.idEjercicio}`
+                      )
+                    }
+                    size="md"
+                  >
+                    <i className="ni ni-bold-left"></i> Atrás
+                  </Button>
                   <Row className="align-items-center">
                     <Col xs="8">
                       <h3 className="mb-0">Libro Diario</h3>
@@ -211,7 +249,7 @@ class Editar extends React.Component {
                               className="form-control-label"
                               htmlFor="partida_descripcion"
                             >
-                              <strong>Descripción</strong>
+                              <strong>Descripción de la Partida</strong>
                             </label>
                             <Input
                               className="form-control-alternative"
@@ -454,7 +492,7 @@ class Editar extends React.Component {
                               className="form-control-label"
                               htmlFor="cuenta_descripcion"
                             >
-                              <strong>Descripción</strong>
+                              <strong>Descripción de la Cuenta</strong>
                             </label>
                             <Input
                               className="form-control-alternative"
