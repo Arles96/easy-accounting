@@ -25,9 +25,10 @@ import TablaT from "../../components/resultados/TablaT";
 import BalanzaComprobacion from "../../components/resultados/BalanzaComprobacion";
 import EstadoResultado from "components/resultados/EstadoResultado";
 import BalanceGeneral from "components/resultados/BalanceGeneral";
-import Download from "views/examples/Excel.js";
 import { Link } from "react-router-dom";
-import ReactHTMLTableToExcel from "react-html-table-to-excel";
+import * as FileSaver from 'file-saver';
+import * as XLSX from 'xlsx';
+import {ExcelFile, ExcelSheet} from "react-export-excel";
 import {
   generateMajorization,
   generateComprobationBalance,
@@ -135,9 +136,19 @@ class Tables extends React.Component {
       });
     });
   }
+  
 
-
- 
+    exportToCSV = ( ) => {
+        
+        const fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+        const fileExtension = '.xlsx';
+        const ws = XLSX.utils.json_to_sheet({"balance": "$0.00"});
+        const wb = { Sheets: { 'data': ws }, SheetNames: ['Balanza'] };
+        const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+        console.log('excelBuffer', excelBuffer)
+        const data = new Blob([excelBuffer], {type: fileType});
+        FileSaver.saveAs(data, 'Balanza' + fileExtension);
+    }
 
   toggle(tab) {
     if (this.state.activeTab !== tab) {
@@ -150,7 +161,7 @@ class Tables extends React.Component {
     return (
       <>
         <Header />
-        <Container responsive className="botones-resultados">
+        <Container fluid className="botones-resultados">
           <Button
             color="primary"
             onClick={() =>
@@ -174,13 +185,20 @@ class Tables extends React.Component {
           </Button>
         </Container>
         <Container fluid className="botones-impresion">
-          
-
+          <Button color="success" size="md" 
+          //onClick={() => console.log(this.state.balanzaComprobacion)}
+          onClick={(e) => this.exportToCSV()}
+          >
+            Exportar Excel
+          </Button>
+          <ExcelFile>
+                <ExcelSheet dataSet={this.state.balanzaComprobacion} name="Organization"/>
+          </ExcelFile>
           <Button color="danger" size="md">
             Exportar PDF
           </Button>
         </Container>
-        <Container responsive>
+        <Container fluid>
           <div className="card-grid">
             {
               {

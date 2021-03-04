@@ -27,7 +27,9 @@ import EstadoResultado from "components/resultados/EstadoResultado";
 import BalanceGeneral from "components/resultados/BalanceGeneral";
 import Download from "views/examples/Excel.js";
 import { Link } from "react-router-dom";
-import ReactHTMLTableToExcel from "react-html-table-to-excel";
+import * as FileSaver from 'file-saver';
+import * as XLSX from 'xlsx';
+import {ExcelFile, ExcelSheet} from "react-export-excel";
 import {
   generateMajorization,
   generateComprobationBalance,
@@ -135,9 +137,10 @@ class Tables extends React.Component {
       });
     });
   }
+  
 
-
- 
+    exportToCSV = ( ) => {
+    }
 
   toggle(tab) {
     if (this.state.activeTab !== tab) {
@@ -174,8 +177,8 @@ class Tables extends React.Component {
           </Button>
         </Container>
         <Container fluid className="botones-impresion">
+        <Download data={this.exportToCSV()}/>
           
-
           <Button color="danger" size="md">
             Exportar PDF
           </Button>

@@ -3,38 +3,24 @@ import React from "react";
 import { Card, CardHeader, Table } from "reactstrap";
 import { toPisto } from "../../components/utils";
 import ReactHTMLTableToExcel from "react-html-table-to-excel";
-import ReactPDF, {
-  Document,
-  Page,
-  Text,
-  Image,
-  StyleSheet,
-  Font,
-} from '@react-pdf/renderer';
-import { Button } from "reactstrap";
 
 
 const EstadoResultado = ({ data = [] }) => {
   return (
     <div className="table-panel estados-resultados-panel">
       <Card className="table-card">
-        <div size="md">
-          <ReactHTMLTableToExcel size="md"
-            id="test-table-xls-button"
-            className="btn btn-info btn-md"
-            table="estado-resultado"
-            filename="estado-resultado"
-            sheet="tablexls"
-            buttonText="Exportar Excel"
-          />
-          <Button color="danger" size="md" onClick={() => ReactPDF.render(EstadoResultado, `output.pdf`)}>
-            Exportar PDF
-          </Button>
-        </div>
+      <ReactHTMLTableToExcel
+      id="test-table-xls-button"
+      className="btn btn-info btn-md"
+      table="estado-resultado"
+      filename="estado-resultado"
+      sheet="tablexls"
+      buttonText="Exportar Excel"
+    />
         <CardHeader>
           <h3>Estado de resultados</h3>
         </CardHeader>
-        <Table id="estado-resultado"
+        <Table id= "estado-resultado"
           responsive
           className="tabla-estado-resultados container-fluid main-content"
         >

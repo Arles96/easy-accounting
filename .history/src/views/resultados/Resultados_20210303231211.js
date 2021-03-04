@@ -135,9 +135,21 @@ class Tables extends React.Component {
       });
     });
   }
+  
 
-
- 
+    exportToCSV = ( ) => {
+      console.log('qp2')
+      return(
+        <ReactHTMLTableToExcel
+        id="test-table-xls-button"
+        className="download-table-xls-button"
+        table="estado-resultado"
+        filename="tablexls"
+        sheet="tablexls"
+        buttonText="Download as XLS"
+      />
+      )
+    }
 
   toggle(tab) {
     if (this.state.activeTab !== tab) {
@@ -174,8 +186,10 @@ class Tables extends React.Component {
           </Button>
         </Container>
         <Container fluid className="botones-impresion">
+        <Button color="info" size="md" onClick={() => this.exportToCSV}>
+            Exportar EXCEL
+          </Button>
           
-
           <Button color="danger" size="md">
             Exportar PDF
           </Button>
