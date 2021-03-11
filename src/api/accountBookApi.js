@@ -533,3 +533,9 @@ export const generateStatementofIncome = (idExercise) => {
     }
   })
 }
+
+export const generateBalanceSheet = (idExercise) => {
+  return new Promise((resolve, reject) => {
+    
+  });
+}
