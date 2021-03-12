@@ -18,7 +18,7 @@
 import React from "react";
 
 // reactstrap components
-import { Container, Button, TabContent, TabPane, Table } from "reactstrap";
+import { Container, Button, TabContent, TabPane } from "reactstrap";
 // core components
 import Header from "components/Headers/Header.js";
 import TablaT from "../../components/resultados/TablaT";
@@ -32,7 +32,6 @@ import {
   generateMajorization,
   generateComprobationBalance,
   generateStatementofIncome,
-  generateBalanceSheet
 } from "../../api/accountBookApi";
 
 class Tables extends React.Component {
@@ -54,7 +53,6 @@ class Tables extends React.Component {
         totalDebitSald: 0,
       },
       estadoResultados: [],
-      balanceSheet: []
     };
   }
 
@@ -136,15 +134,22 @@ class Tables extends React.Component {
         estadoResultados: response.data,
       });
     });
-    generateBalanceSheet(this.state.idEjercicio).then(({ data }) => {
-      this.setState({
-        balanceSheet: data
-      });
-    });
   }
+  
 
-
-
+    exportToCSV = ( ) => {
+      console.log('qp2')
+      return(
+        <ReactHTMLTableToExcel
+        id="test-table-xls-button"
+        className="download-table-xls-button"
+        table="estado-resultado"
+        filename="tablexls"
+        sheet="tablexls"
+        buttonText="Download as XLS"
+      />
+      )
+    }
 
   toggle(tab) {
     if (this.state.activeTab !== tab) {
@@ -181,8 +186,10 @@ class Tables extends React.Component {
           </Button>
         </Container>
         <Container fluid className="botones-impresion">
-
-
+        <Button color="info" size="md">
+            Exportar EXCEL
+          </Button>
+          
           <Button color="danger" size="md">
             Exportar PDF
           </Button>
@@ -191,30 +198,17 @@ class Tables extends React.Component {
           <div className="card-grid">
             {
               {
-                1: <Table id='CuentasT'>
-                  <div size="md">
-                    <ReactHTMLTableToExcel size="md"
-                      id="test-table-xls-button"
-                      className="btn btn-info btn-md"
-                      table="CuentasT"
-                      filename="cuentas-t"
-                      sheet="tablexls"
-                      buttonText="Exportar Excel"
-                    />
-                  </div>
-                  {this.state.datosTabla.map((datosTabla) => (
-                    <TablaT
-                      key={datosTabla.nameAccount + "tt"}
-                      datosTabla={datosTabla}
-                    />
-                  ))}
-                </Table>
-                ,
+                1: this.state.datosTabla.map((datosTabla) => (
+                  <TablaT
+                    key={datosTabla.nameAccount + "tt"}
+                    datosTabla={datosTabla}
+                  />
+                )),
                 2: (
                   <BalanzaComprobacion data={this.state.balanzaComprobacion} />
                 ),
                 3: <EstadoResultado data={this.state.estadoResultados} />,
-                4: <BalanceGeneral data={this.state.balanceSheet} />,
+                4: <BalanceGeneral />,
               }[this.state.activeTab]
             }
           </div>

@@ -32,7 +32,6 @@ import {
   generateMajorization,
   generateComprobationBalance,
   generateStatementofIncome,
-  generateBalanceSheet
 } from "../../api/accountBookApi";
 
 class Tables extends React.Component {
@@ -54,7 +53,6 @@ class Tables extends React.Component {
         totalDebitSald: 0,
       },
       estadoResultados: [],
-      balanceSheet: []
     };
   }
 
@@ -136,11 +134,6 @@ class Tables extends React.Component {
         estadoResultados: response.data,
       });
     });
-    generateBalanceSheet(this.state.idEjercicio).then(({ data }) => {
-      this.setState({
-        balanceSheet: data
-      });
-    });
   }
 
 
@@ -214,7 +207,7 @@ class Tables extends React.Component {
                   <BalanzaComprobacion data={this.state.balanzaComprobacion} />
                 ),
                 3: <EstadoResultado data={this.state.estadoResultados} />,
-                4: <BalanceGeneral data={this.state.balanceSheet} />,
+                4: <BalanceGeneral />,
               }[this.state.activeTab]
             }
           </div>

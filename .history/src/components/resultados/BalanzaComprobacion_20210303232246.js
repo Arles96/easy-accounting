@@ -2,7 +2,7 @@ import React from "react";
 
 import { Card, CardHeader, Table } from "reactstrap";
 import { toPisto } from "../../components/utils";
-import { Button } from "reactstrap";
+import {  Button} from "reactstrap";
 import ReactHTMLTableToExcel from "react-html-table-to-excel";
 
 // debe / haber
@@ -12,7 +12,7 @@ import ReactHTMLTableToExcel from "react-html-table-to-excel";
 // }
 const exportToCSV = () => {
   console.log('qp2')
-
+  
 }
 const BalanzaCombrobacion = ({ data }) => {
   const {
@@ -22,21 +22,18 @@ const BalanzaCombrobacion = ({ data }) => {
     totalCreditSald,
     totalDebitSald,
   } = data;
-
+  
   return (
     <div className="table-panel balanza-comprobacion-panel">
       <Card className="table-card">
-        <div size="md">
-          <ReactHTMLTableToExcel
-            id="test-table-xls-button"
-            className="btn btn-info btn-md"
-            table="table-to-xls"
-            filename="tablexls"
-            sheet="tablexls"
-            buttonText="Exportar Excel"
-          />
-        </div>
-
+      <ReactHTMLTableToExcel
+      id="test-table-xls-button"
+      className="download-table-xls-button"
+      table="table-to-xls"
+      filename="tablexls"
+      sheet="tablexls"
+      buttonText="Download as XLS"
+    />
         <CardHeader>
           <h3>Balanza de Comprobación</h3>
         </CardHeader>
@@ -85,11 +82,11 @@ const BalanzaCombrobacion = ({ data }) => {
                     <td />
                   </>
                 ) : (
-                      <>
-                        <td className="left-border-cell" />
-                        <td>{toPisto(cuenta.total)}</td>
-                      </>
-                    )}
+                  <>
+                    <td className="left-border-cell" />
+                    <td>{toPisto(cuenta.total)}</td>
+                  </>
+                )}
               </tr>
             ))}
             <tr>

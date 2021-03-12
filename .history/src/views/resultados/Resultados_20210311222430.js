@@ -32,7 +32,6 @@ import {
   generateMajorization,
   generateComprobationBalance,
   generateStatementofIncome,
-  generateBalanceSheet
 } from "../../api/accountBookApi";
 
 class Tables extends React.Component {
@@ -54,7 +53,6 @@ class Tables extends React.Component {
         totalDebitSald: 0,
       },
       estadoResultados: [],
-      balanceSheet: []
     };
   }
 
@@ -136,15 +134,10 @@ class Tables extends React.Component {
         estadoResultados: response.data,
       });
     });
-    generateBalanceSheet(this.state.idEjercicio).then(({ data }) => {
-      this.setState({
-        balanceSheet: data
-      });
-    });
   }
 
 
-
+ 
 
   toggle(tab) {
     if (this.state.activeTab !== tab) {
@@ -181,7 +174,7 @@ class Tables extends React.Component {
           </Button>
         </Container>
         <Container fluid className="botones-impresion">
-
+          
 
           <Button color="danger" size="md">
             Exportar PDF
@@ -191,30 +184,20 @@ class Tables extends React.Component {
           <div className="card-grid">
             {
               {
-                1: <Table id='CuentasT'>
-                  <div size="md">
-                    <ReactHTMLTableToExcel size="md"
-                      id="test-table-xls-button"
-                      className="btn btn-info btn-md"
-                      table="CuentasT"
-                      filename="cuentas-t"
-                      sheet="tablexls"
-                      buttonText="Exportar Excel"
-                    />
-                  </div>
+                1:<Table id='CuentasT'>
                   {this.state.datosTabla.map((datosTabla) => (
-                    <TablaT
-                      key={datosTabla.nameAccount + "tt"}
-                      datosTabla={datosTabla}
-                    />
-                  ))}
+                  <TablaT
+                    key={datosTabla.nameAccount + "tt"}
+                    datosTabla={datosTabla}
+                  />
+                ))}
                 </Table>
-                ,
+                , 
                 2: (
                   <BalanzaComprobacion data={this.state.balanzaComprobacion} />
                 ),
                 3: <EstadoResultado data={this.state.estadoResultados} />,
-                4: <BalanceGeneral data={this.state.balanceSheet} />,
+                4: <BalanceGeneral />,
               }[this.state.activeTab]
             }
           </div>

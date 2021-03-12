@@ -2,18 +2,13 @@ import React from "react";
 
 import { Card, CardHeader, Table } from "reactstrap";
 import { toPisto } from "../../components/utils";
-import { Button } from "reactstrap";
-import ReactHTMLTableToExcel from "react-html-table-to-excel";
 
 // debe / haber
 // {
 //   partida: "",
 //   valor: ""
 // }
-const exportToCSV = () => {
-  console.log('qp2')
 
-}
 const BalanzaCombrobacion = ({ data }) => {
   const {
     arrCuentas,
@@ -22,25 +17,29 @@ const BalanzaCombrobacion = ({ data }) => {
     totalCreditSald,
     totalDebitSald,
   } = data;
-
+  exportToCSV = () => {
+    console.log('qp2')
+    return (
+      <ReactHTMLTableToExcel
+        id="test-table-xls-button"
+        className="download-table-xls-button"
+        table="balanza"
+        filename="tablexls"
+        sheet="tablexls"
+        buttonText="Download as XLS"
+      />
+    )
+  }
   return (
     <div className="table-panel balanza-comprobacion-panel">
       <Card className="table-card">
-        <div size="md">
-          <ReactHTMLTableToExcel
-            id="test-table-xls-button"
-            className="btn btn-info btn-md"
-            table="table-to-xls"
-            filename="tablexls"
-            sheet="tablexls"
-            buttonText="Exportar Excel"
-          />
-        </div>
-
+        <Button color="info" size="md" onClick={() => this.exportToCSV()}>
+            Exportar EXCEL
+          </Button>
         <CardHeader>
           <h3>Balanza de Comprobación</h3>
         </CardHeader>
-        <Table id='table-to-xls' responsive>
+        <Table id='balanza' responsive>
           <thead>
             <tr>
               <th scope="col" rowSpan="2" className="multiple-row-cell-center">
@@ -85,11 +84,11 @@ const BalanzaCombrobacion = ({ data }) => {
                     <td />
                   </>
                 ) : (
-                      <>
-                        <td className="left-border-cell" />
-                        <td>{toPisto(cuenta.total)}</td>
-                      </>
-                    )}
+                  <>
+                    <td className="left-border-cell" />
+                    <td>{toPisto(cuenta.total)}</td>
+                  </>
+                )}
               </tr>
             ))}
             <tr>

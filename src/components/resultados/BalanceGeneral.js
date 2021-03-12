@@ -1,6 +1,8 @@
 import React from "react";
 
-import { Card, CardHeader, Table } from "reactstrap";
+import { Card, CardHeader, Table, Button } from "reactstrap";
+
+import ReactHTMLTableToExcel from "react-html-table-to-excel";
 import { toPisto } from "../utils"
 
 // debe / haber
@@ -15,10 +17,20 @@ const BalanceGeneral = ({ data }) => {
   return (
     <div className="table-panel balance-general-panel">
       <Card className="table-card">
+        <div size="md">
+          <ReactHTMLTableToExcel size="md"
+            id="test-table-xls-button"
+            className="btn btn-info btn-md"
+            table="balance-general"
+            filename="balance-general"
+            sheet="tablexls"
+            buttonText="Exportar Excel"
+          />
+        </div>
         <CardHeader>
           <h3>Balance General</h3>
         </CardHeader>
-        <Table responsive>
+        <Table id= 'balance-general' responsive>
           <thead>
             <tr>
               <th scope="col">

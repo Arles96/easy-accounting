@@ -18,21 +18,20 @@
 import React from "react";
 
 // reactstrap components
-import { Container, Button, TabContent, TabPane, Table } from "reactstrap";
+import { Container, Button, TabContent, TabPane } from "reactstrap";
 // core components
 import Header from "components/Headers/Header.js";
 import TablaT from "../../components/resultados/TablaT";
 import BalanzaComprobacion from "../../components/resultados/BalanzaComprobacion";
 import EstadoResultado from "components/resultados/EstadoResultado";
 import BalanceGeneral from "components/resultados/BalanceGeneral";
-import Download from "views/examples/Excel.js";
 import { Link } from "react-router-dom";
-import ReactHTMLTableToExcel from "react-html-table-to-excel";
+import * as FileSaver from 'file-saver';
+import * as XLSX from 'xlsx';
 import {
   generateMajorization,
   generateComprobationBalance,
   generateStatementofIncome,
-  generateBalanceSheet
 } from "../../api/accountBookApi";
 
 class Tables extends React.Component {
@@ -54,7 +53,6 @@ class Tables extends React.Component {
         totalDebitSald: 0,
       },
       estadoResultados: [],
-      balanceSheet: []
     };
   }
 
@@ -105,12 +103,6 @@ class Tables extends React.Component {
           };
         }
       );
-
-      //generateComprobationBalance
-      generateStatementofIncome(this.state.idEjercicio).then((response) => {
-        console.log('estado de ', response.data)
-      })
-
       this.setState({ datosTabla: arr });
       console.log("Estado: ", this.state);
     });
@@ -136,15 +128,18 @@ class Tables extends React.Component {
         estadoResultados: response.data,
       });
     });
-    generateBalanceSheet(this.state.idEjercicio).then(({ data }) => {
-      this.setState({
-        balanceSheet: data
-      });
-    });
   }
+  
 
-
-
+    exportToCSV = ( ) => {
+        const fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+        const fileExtension = '.xlsx';
+        const ws = XLSX.utils.json_to_sheet(this.state.balanzaComprobacion);
+        const wb = { Sheets: { 'data': ws }, SheetNames: ['Balanza'] };
+        const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+        const data = new Blob([excelBuffer], {type: fileType});
+        FileSaver.saveAs(data, 'Balanza' + fileExtension);
+    }
 
   toggle(tab) {
     if (this.state.activeTab !== tab) {
@@ -157,7 +152,7 @@ class Tables extends React.Component {
     return (
       <>
         <Header />
-        <Container responsive className="botones-resultados">
+        <Container fluid className="botones-resultados">
           <Button
             color="primary"
             onClick={() =>
@@ -181,40 +176,30 @@ class Tables extends React.Component {
           </Button>
         </Container>
         <Container fluid className="botones-impresion">
-
-
+          <Button color="success" size="md" onClick={console.log(this.state.balanzaComprobacion)}
+          //onClick={(e) => this.exportToCSV()}
+          >
+            Exportar Excel
+          </Button>
           <Button color="danger" size="md">
             Exportar PDF
           </Button>
         </Container>
-        <Container responsive>
+        <Container fluid>
           <div className="card-grid">
             {
               {
-                1: <Table id='CuentasT'>
-                  <div size="md">
-                    <ReactHTMLTableToExcel size="md"
-                      id="test-table-xls-button"
-                      className="btn btn-info btn-md"
-                      table="CuentasT"
-                      filename="cuentas-t"
-                      sheet="tablexls"
-                      buttonText="Exportar Excel"
-                    />
-                  </div>
-                  {this.state.datosTabla.map((datosTabla) => (
-                    <TablaT
-                      key={datosTabla.nameAccount + "tt"}
-                      datosTabla={datosTabla}
-                    />
-                  ))}
-                </Table>
-                ,
+                1: this.state.datosTabla.map((datosTabla) => (
+                  <TablaT
+                    key={datosTabla.nameAccount + "tt"}
+                    datosTabla={datosTabla}
+                  />
+                )),
                 2: (
                   <BalanzaComprobacion data={this.state.balanzaComprobacion} />
                 ),
                 3: <EstadoResultado data={this.state.estadoResultados} />,
-                4: <BalanceGeneral data={this.state.balanceSheet} />,
+                4: <BalanceGeneral />,
               }[this.state.activeTab]
             }
           </div>

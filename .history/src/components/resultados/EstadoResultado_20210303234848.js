@@ -3,15 +3,6 @@ import React from "react";
 import { Card, CardHeader, Table } from "reactstrap";
 import { toPisto } from "../../components/utils";
 import ReactHTMLTableToExcel from "react-html-table-to-excel";
-import ReactPDF, {
-  Document,
-  Page,
-  Text,
-  Image,
-  StyleSheet,
-  Font,
-} from '@react-pdf/renderer';
-import { Button } from "reactstrap";
 
 
 const EstadoResultado = ({ data = [] }) => {
@@ -27,10 +18,8 @@ const EstadoResultado = ({ data = [] }) => {
             sheet="tablexls"
             buttonText="Exportar Excel"
           />
-          <Button color="danger" size="md" onClick={() => ReactPDF.render(EstadoResultado, `output.pdf`)}>
-            Exportar PDF
-          </Button>
         </div>
+
         <CardHeader>
           <h3>Estado de resultados</h3>
         </CardHeader>

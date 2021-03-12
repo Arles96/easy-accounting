@@ -27,9 +27,6 @@ const EstadoResultado = ({ data = [] }) => {
             sheet="tablexls"
             buttonText="Exportar Excel"
           />
-          <Button color="danger" size="md" onClick={() => ReactPDF.render(EstadoResultado, `output.pdf`)}>
-            Exportar PDF
-          </Button>
         </div>
         <CardHeader>
           <h3>Estado de resultados</h3>
