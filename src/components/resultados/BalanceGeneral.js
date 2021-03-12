@@ -11,8 +11,8 @@ import { toPisto } from "../utils"
 //   valor: ""
 // }
 
-const BalanceGeneral = () => {
-
+const BalanceGeneral = ({ data }) => {
+  
 
   return (
     <div className="table-panel balance-general-panel">
@@ -34,34 +34,56 @@ const BalanceGeneral = () => {
           <thead>
             <tr>
               <th scope="col">
-                Activo
+                Detalle
               </th>
               <th scope="col">
-                Pasivo
+                Total
               </th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-            </tr>
+           {
+             data.map(({ name, title, isTotal, total }) => {
+               if (title) {
+                 return (
+                  <tr>
+                    <td>
+                      <b>
+                        {name}
+                      </b>
+                    </td>
+                    <td></td>
+                  </tr>
+                 );
+               } else if (isTotal) {
+                 return (
+                  <tr>
+                    <td>
+                      <b>
+                        {name}
+                      </b>
+                    </td>
+                    <td>
+                      <b>
+                        {total}
+                      </b>
+                    </td>
+                  </tr>
+                 );
+               } else {
+                 return (
+                  <tr>
+                    <td>
+                      {name}
+                    </td>
+                    <td>
+                      {total}
+                    </td>
+                  </tr>
+                 );
+               }
+             })
+           }
           </tbody>
         </Table>
       </Card>
