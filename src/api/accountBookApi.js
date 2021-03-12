@@ -216,7 +216,6 @@ export const generateMajorization = idExercise => new Promise((resolve, reject) 
       getAccounts().then(responseAccounts => {
         const arrayMajorization = [];
         const { data: dataAccounts } = responseAccounts;
-        console.log(dataAccounts);
         // listando todas las cuentas
         dataAccounts.rows.forEach(account => {
           const debit = [];
@@ -261,7 +260,6 @@ export const generateMajorization = idExercise => new Promise((resolve, reject) 
             arrayMajorization.push(doc);
           }
         });
-        console.log(arrayMajorization);
         resolve({
           status: 'success',
           info: 'Se realizo la mayorización exitosamente',
