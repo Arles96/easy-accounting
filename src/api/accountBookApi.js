@@ -533,3 +533,92 @@ export const generateStatementofIncome = (idExercise) => {
     }
   })
 }
+
+export const generateBalanceSheet = (idExercise) => {
+  return new Promise((resolve, reject) => {
+    generateComprobationBalance(idExercise).then(res => {
+      const result = [];
+      const { data } = res;
+      let totalActive = 0;
+      // usando las cuentas de tipo activo
+      result.push({
+        name: 'Activos',
+        title: true,
+      });
+      data.forEach(({ code, nameAccount, sectionAccount, total }) => {
+        if (code[0] === '1') {
+          if (sectionAccount === 'debit') {
+            result.push({
+              code: code,
+              name: nameAccount,
+              total: total
+            });
+            totalActive += total;
+          } else {
+            result.push({
+              code: code,
+              name: nameAccount,
+              total: 0
+            });
+          }
+        }
+      });
+      result.push({
+        name: 'Total Activo',
+        isTotal: true,
+        total: totalActive
+      });
+      // usando las cuentas de tipo pasivo
+      let totalPassive = 0;
+      result.push({
+        name: 'Pasivos',
+        title: true
+      });
+      data.forEach(({ code, nameAccount, sectionAccount, total }) => {
+        if (code[0] === '2') {
+          if (sectionAccount === 'credit') {
+            result.push({
+              name: nameAccount,
+              code: code,
+              total: total
+            });
+            totalPassive += total;
+          } else {
+            result.push({
+              name: nameAccount,
+              code: code,
+              total: 0,
+            });
+          }
+        }
+      });
+      result.push({
+        name: 'Total Pasivo',
+        isTotal: true,
+        total: totalPassive
+      });
+      // calculando el patrimonio neto
+      let patrimony = totalActive - totalPassive;
+      result.push({
+        name: 'Patrimonio',
+        title: true,
+      });
+      result.push({
+        name: 'Capital Social',
+        code: '321',
+        total: patrimony < 0 ? patrimony * -1 : patrimony
+      });
+      result.push({
+        name: 'Total Patrimonio',
+        isTotal: true,
+        total: patrimony < 0 ? patrimony * -1 : patrimony
+      });
+      resolve({
+        status: 'success',
+        data: result
+      });
+    }).catch(error => {
+      reject(error);
+    });
+  });
+}
