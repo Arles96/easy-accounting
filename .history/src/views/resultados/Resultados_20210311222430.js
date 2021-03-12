@@ -137,7 +137,7 @@ class Tables extends React.Component {
   }
 
 
-
+ 
 
   toggle(tab) {
     if (this.state.activeTab !== tab) {
@@ -174,7 +174,7 @@ class Tables extends React.Component {
           </Button>
         </Container>
         <Container fluid className="botones-impresion">
-
+          
 
           <Button color="danger" size="md">
             Exportar PDF
@@ -184,25 +184,15 @@ class Tables extends React.Component {
           <div className="card-grid">
             {
               {
-                1: <Table id='CuentasT'>
-                  <div size="md">
-                    <ReactHTMLTableToExcel size="md"
-                      id="test-table-xls-button"
-                      className="btn btn-info btn-md"
-                      table="CuentasT"
-                      filename="cuentas-t"
-                      sheet="tablexls"
-                      buttonText="Exportar Excel"
-                    />
-                  </div>
+                1:<Table id='CuentasT'>
                   {this.state.datosTabla.map((datosTabla) => (
-                    <TablaT
-                      key={datosTabla.nameAccount + "tt"}
-                      datosTabla={datosTabla}
-                    />
-                  ))}
+                  <TablaT
+                    key={datosTabla.nameAccount + "tt"}
+                    datosTabla={datosTabla}
+                  />
+                ))}
                 </Table>
-                ,
+                , 
                 2: (
                   <BalanzaComprobacion data={this.state.balanzaComprobacion} />
                 ),

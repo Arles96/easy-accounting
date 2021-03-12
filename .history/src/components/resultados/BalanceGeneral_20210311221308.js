@@ -1,8 +1,6 @@
 import React from "react";
 
-import { Card, CardHeader, Table, Button } from "reactstrap";
-
-import ReactHTMLTableToExcel from "react-html-table-to-excel";
+import { Card, CardHeader, Table } from "reactstrap";
 import { toPisto } from "../utils"
 
 // debe / haber
@@ -26,6 +24,9 @@ const BalanceGeneral = () => {
             sheet="tablexls"
             buttonText="Exportar Excel"
           />
+          <Button color="danger" size="md" onClick={() => ReactPDF.render(EstadoResultado, `output.pdf`)}>
+            Exportar PDF
+          </Button>
         </div>
         <CardHeader>
           <h3>Balance General</h3>
