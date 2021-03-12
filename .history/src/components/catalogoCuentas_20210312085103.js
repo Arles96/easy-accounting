@@ -385,10 +385,6 @@ export const catalogoCuentas = (code) => {
       nombre_cuenta: "Hipotecas por Pagar",
     },
     {
-      codigo_cuenta: "223",
-      nombre_cuenta: "Provisiones",
-    },
-    {
       codigo_cuenta: "2231",
       nombre_cuenta: "Provisiones para Compensaciones a Empleados",
     },
@@ -399,22 +395,6 @@ export const catalogoCuentas = (code) => {
     {
       codigo_cuenta: "2233",
       nombre_cuenta: "Provisiones para Cubrir Reclamos Legales",
-    },
-    {
-      codigo_cuenta: "3",
-      nombre_cuenta: "Patrimonio",
-    },
-    {
-      codigo_cuenta: "31",
-      nombre_cuenta: "Comerciante Individual",
-    },
-    {
-      codigo_cuenta: "311",
-      nombre_cuenta: "Capital",
-    },
-    {
-      codigo_cuenta: "312",
-      nombre_cuenta: "Resultados Acumulados",
     },
     {
       codigo_cuenta: "3121",
@@ -429,18 +409,6 @@ export const catalogoCuentas = (code) => {
       nombre_cuenta: "Pérdidas no Aplicadas",
     },
     {
-      codigo_cuenta: "32",
-      nombre_cuenta: "Empresa Jurídica",
-    },
-    {
-      codigo_cuenta: "321",
-      nombre_cuenta: "Capital Social",
-    },
-    {
-      codigo_cuenta: "322",
-      nombre_cuenta: "Reservas",
-    },
-    {
       codigo_cuenta: "3221",
       nombre_cuenta: "Reserva Legal",
     },
@@ -453,20 +421,12 @@ export const catalogoCuentas = (code) => {
       nombre_cuenta: "Reserva de Educación",
     },
     {
-      codigo_cuenta: "323",
-      nombre_cuenta: "Resultados Acumulados",
-    },
-    {
       codigo_cuenta: "3231",
       nombre_cuenta: "Utilidad o Pérdida de Años Anteriores",
     },
     {
       codigo_cuenta: "3232",
       nombre_cuenta: "Utilidad o Pérdida Neta del Ejercicio",
-    },
-    {
-      codigo_cuenta: "4",
-      nombre_cuenta: "Cuentas de Ingresos",
     },
     {
       codigo_cuenta: "4001",
@@ -491,10 +451,6 @@ export const catalogoCuentas = (code) => {
     {
       codigo_cuenta: "4006",
       nombre_cuenta: "Descuento Sobre Compras",
-    },
-    {
-      codigo_cuenta: "5",
-      nombre_cuenta: "Cuentas de Costos y Gastos",
     },
     {
       codigo_cuenta: "5001",

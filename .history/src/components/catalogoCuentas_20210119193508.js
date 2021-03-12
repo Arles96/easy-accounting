@@ -1,18 +1,6 @@
 export const catalogoCuentas = (code) => {
   const cuentas = [
     {
-      codigo_cuenta: "1",
-      nombre_cuenta: "Activo",
-    },
-    {
-      codigo_cuenta: "11",
-      nombre_cuenta: "Activo Corriente",
-    },
-    {
-      codigo_cuenta: "111",
-      nombre_cuenta: "Efectivo y Equivalentes de Efectivo",
-    },
-    {
       codigo_cuenta: "1111",
       nombre_cuenta: "Caja",
     },
@@ -33,20 +21,12 @@ export const catalogoCuentas = (code) => {
       nombre_cuenta: "Valores Negociables o Bonos",
     },
     {
-      codigo_cuenta: "112",
-      nombre_cuenta: "Inversiones",
-    },
-    {
       codigo_cuenta: "1121",
       nombre_cuenta: "Incersiones en Bonos",
     },
     {
       codigo_cuenta: "1122",
       nombre_cuenta: "Depósitos a Plazo",
-    },
-    {
-      codigo_cuenta: "113",
-      nombre_cuenta: "Deudores Comerciales y Otras Cuentas por Cobrar",
     },
     {
       codigo_cuenta: "1131",
@@ -81,10 +61,6 @@ export const catalogoCuentas = (code) => {
       nombre_cuenta: "Funcionarios y Empleados o Anticipo a Empleados",
     },
     {
-      codigo_cuenta: "114",
-      nombre_cuenta: "Inventarios",
-    },
-    {
       codigo_cuenta: "1141",
       nombre_cuenta: "Inventario de Mercadería (almacén)",
     },
@@ -99,10 +75,6 @@ export const catalogoCuentas = (code) => {
     {
       codigo_cuenta: "1144",
       nombre_cuenta: "Inventario de Productos Terminador",
-    },
-    {
-      codigo_cuenta: "115",
-      nombre_cuenta: "Pagos por Anticipados",
     },
     {
       codigo_cuenta: "1151",
@@ -149,14 +121,6 @@ export const catalogoCuentas = (code) => {
       nombre_cuenta: "Primas de Seguros",
     },
     {
-      codigo_cuenta: "12",
-      nombre_cuenta: "Activo no Corriente",
-    },
-    {
-      codigo_cuenta: "121",
-      nombre_cuenta: "Inversiones y Valores",
-    },
-    {
       codigo_cuenta: "1211",
       nombre_cuenta: "Depósitos a Plaza Fijo",
     },
@@ -175,10 +139,6 @@ export const catalogoCuentas = (code) => {
     {
       codigo_cuenta: "1215",
       nombre_cuenta: "Depósito a Plazo",
-    },
-    {
-      codigo_cuenta: "122",
-      nombre_cuenta: "Propiedad, Planta y Equipo",
     },
     {
       codigo_cuenta: "1221",
@@ -213,20 +173,12 @@ export const catalogoCuentas = (code) => {
       nombre_cuenta: "Herramientas",
     },
     {
-      codigo_cuenta: "123",
-      nombre_cuenta: "Propiedades de Inversión (disponibles para alquiler o venta)",
-    },
-    {
       codigo_cuenta: "1231",
       nombre_cuenta: "Terrenos",
     },
     {
       codigo_cuenta: "1232",
       nombre_cuenta: "Edificios",
-    },
-    {
-      codigo_cuenta: "124",
-      nombre_cuenta: "Activos Intangibles",
     },
     {
       codigo_cuenta: "1241",
@@ -249,10 +201,6 @@ export const catalogoCuentas = (code) => {
       nombre_cuenta: "Programas Informáticos",
     },
     {
-      codigo_cuenta: "125",
-      nombre_cuenta: "Otros Activos",
-    },
-    {
       codigo_cuenta: "1251",
       nombre_cuenta: "Bancos (Cuenta Congelada)",
     },
@@ -265,18 +213,6 @@ export const catalogoCuentas = (code) => {
       nombre_cuenta: "Depósitos en Garantía",
     },
     {
-      codigo_cuenta: "2",
-      nombre_cuenta: "Pasivo",
-    },
-    {
-      codigo_cuenta: "21",
-      nombre_cuenta: "Pasivo Corriente",
-    },
-    {
-      codigo_cuenta: "211",
-      nombre_cuenta: "Cuentas y Documentos por Pagar",
-    },
-    {
       codigo_cuenta: "2111",
       nombre_cuenta: "Proveedores (cuentas por pagar)",
     },
@@ -286,7 +222,7 @@ export const catalogoCuentas = (code) => {
     },
     {
       codigo_cuenta: "2113",
-      nombre_cuenta: "Impuestos por Pagar",
+      nombre_cuenta: "Impoestos por Pagar",
     },
     {
       codigo_cuenta: "2114",
@@ -305,20 +241,12 @@ export const catalogoCuentas = (code) => {
       nombre_cuenta: "Hipotecas por Pagar",
     },
     {
-      codigo_cuenta: "212",
-      nombre_cuenta: "Prestamos",
-    },
-    {
       codigo_cuenta: "2121",
       nombre_cuenta: "Préstamos Bancarios",
     },
     {
       codigo_cuenta: "2122",
       nombre_cuenta: "Préstamos Hipotecarios",
-    },
-    {
-      codigo_cuenta: "213",
-      nombre_cuenta: "Obligaciones por Provisiones",
     },
     {
       codigo_cuenta: "2131",
@@ -331,10 +259,6 @@ export const catalogoCuentas = (code) => {
     {
       codigo_cuenta: "2133",
       nombre_cuenta: "Provisiones para Cubrir Reclamos Legales",
-    },
-    {
-      codigo_cuenta: "214",
-      nombre_cuenta: "Cobros Anticipados",
     },
     {
       codigo_cuenta: "2141",
@@ -353,14 +277,6 @@ export const catalogoCuentas = (code) => {
       nombre_cuenta: "Anticipos a Clientes",
     },
     {
-      codigo_cuenta: "22",
-      nombre_cuenta: "Pasivo no Corrientes",
-    },
-    {
-      codigo_cuenta: "221",
-      nombre_cuenta: "Cuentas y Documentos por Pagar",
-    },
-    {
       codigo_cuenta: "2211",
       nombre_cuenta: "Acreedores Varios",
     },
@@ -373,20 +289,12 @@ export const catalogoCuentas = (code) => {
       nombre_cuenta: "Obligaciones por Provisiones",
     },
     {
-      codigo_cuenta: "222",
-      nombre_cuenta: "Prestamos",
-    },
-    {
       codigo_cuenta: "2221",
       nombre_cuenta: "Préstamos Bancarios",
     },
     {
       codigo_cuenta: "2222",
       nombre_cuenta: "Hipotecas por Pagar",
-    },
-    {
-      codigo_cuenta: "223",
-      nombre_cuenta: "Provisiones",
     },
     {
       codigo_cuenta: "2231",
@@ -401,22 +309,6 @@ export const catalogoCuentas = (code) => {
       nombre_cuenta: "Provisiones para Cubrir Reclamos Legales",
     },
     {
-      codigo_cuenta: "3",
-      nombre_cuenta: "Patrimonio",
-    },
-    {
-      codigo_cuenta: "31",
-      nombre_cuenta: "Comerciante Individual",
-    },
-    {
-      codigo_cuenta: "311",
-      nombre_cuenta: "Capital",
-    },
-    {
-      codigo_cuenta: "312",
-      nombre_cuenta: "Resultados Acumulados",
-    },
-    {
       codigo_cuenta: "3121",
       nombre_cuenta: "Utilidades o Pérdidas de Años Anteriores",
     },
@@ -427,18 +319,6 @@ export const catalogoCuentas = (code) => {
     {
       codigo_cuenta: "3123",
       nombre_cuenta: "Pérdidas no Aplicadas",
-    },
-    {
-      codigo_cuenta: "32",
-      nombre_cuenta: "Empresa Jurídica",
-    },
-    {
-      codigo_cuenta: "321",
-      nombre_cuenta: "Capital Social",
-    },
-    {
-      codigo_cuenta: "322",
-      nombre_cuenta: "Reservas",
     },
     {
       codigo_cuenta: "3221",
@@ -453,20 +333,12 @@ export const catalogoCuentas = (code) => {
       nombre_cuenta: "Reserva de Educación",
     },
     {
-      codigo_cuenta: "323",
-      nombre_cuenta: "Resultados Acumulados",
-    },
-    {
       codigo_cuenta: "3231",
       nombre_cuenta: "Utilidad o Pérdida de Años Anteriores",
     },
     {
       codigo_cuenta: "3232",
       nombre_cuenta: "Utilidad o Pérdida Neta del Ejercicio",
-    },
-    {
-      codigo_cuenta: "4",
-      nombre_cuenta: "Cuentas de Ingresos",
     },
     {
       codigo_cuenta: "4001",
@@ -491,10 +363,6 @@ export const catalogoCuentas = (code) => {
     {
       codigo_cuenta: "4006",
       nombre_cuenta: "Descuento Sobre Compras",
-    },
-    {
-      codigo_cuenta: "5",
-      nombre_cuenta: "Cuentas de Costos y Gastos",
     },
     {
       codigo_cuenta: "5001",
