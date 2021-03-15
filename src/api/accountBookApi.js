@@ -613,6 +613,11 @@ export const generateBalanceSheet = (idExercise) => {
         isTotal: true,
         total: patrimony < 0 ? patrimony * -1 : patrimony
       });
+      result.push({
+        name: 'Pasivo mas Patrimonio Neto',
+        isTotal: true,
+        total: patrimony < 0 ? (patrimony * -1) + totalPassive : patrimony + totalPassive
+      })
       resolve({
         status: 'success',
         data: result
