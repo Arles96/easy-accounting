@@ -60,8 +60,6 @@ class Tables extends React.Component {
 
   componentDidMount() {
     generateMajorization(this.state.idEjercicio).then((response) => {
-      console.log("Entró ", response);
-      console.log("resp[0] ", response.data[0]);
       const arr = response.data.map(
         ({
           nameAccount,
@@ -108,11 +106,9 @@ class Tables extends React.Component {
 
       //generateComprobationBalance
       generateStatementofIncome(this.state.idEjercicio).then((response) => {
-        console.log('estado de ', response.data)
       })
 
       this.setState({ datosTabla: arr });
-      console.log("Estado: ", this.state);
     });
     generateComprobationBalance(this.state.idEjercicio).then((response) => {
       if (!response.status || response.status !== "success") {

@@ -8,7 +8,7 @@ const AlertExample = (props) => {
 
   return (
     <Alert color="danger" isOpen={visible} toggle={onDismiss}>
-      El debe y el haber no cuadra
+      {props.mensaje}
     </Alert>
   );
 };

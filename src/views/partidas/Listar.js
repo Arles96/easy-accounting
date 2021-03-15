@@ -14,7 +14,8 @@ class Listar extends React.Component {
     const { id } = params;
     this.state = {
       partidas: [],
-      idEjercicio: id
+      idEjercicio: id,
+      numPartida: 1
     };
   }
 
@@ -22,16 +23,29 @@ class Listar extends React.Component {
     
     getAccountsOperations(this.state.idEjercicio)
       .then((res) => {
-        console.log("EL RES", res.data);
         this.setState({ partidas: res.data });
+        if(res.data){
+          let mayor = this.getGreaterThan(res.data)
+          this.setState({numPartida: parseInt(mayor) + 1})
+        }
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  render() {
+  getGreaterThan(partidas) {
+    let mayor = 1;
+    partidas.forEach(partida => {
+      if(partida.number > mayor){
+        mayor = partida.number;
+      }
+    });
+    return mayor;
+  }
 
+  render() {
+    const { history } = this.props;
     return (
       <>
         <div>
@@ -39,14 +53,22 @@ class Listar extends React.Component {
           <Container className="mt--8" fluid>
           <Button
               color="default"
-              href={`/admin/partidas/${this.state.idEjercicio}`}
+              onClick={() =>
+                history.push(
+                  `/admin/partidas/${this.state.idEjercicio}/${this.state.numPartida}`
+                )
+              }
               size="med"
             >
               Añadir Partida
             </Button>
             <Button
               color="default"
-              href={`/admin/resultados/${this.state.idEjercicio}`}
+              onClick={() =>
+                history.push(
+                  `/admin/resultados/${this.state.idEjercicio}`
+                )
+              }
               size="med"
             >
               Mostrar Resultados
