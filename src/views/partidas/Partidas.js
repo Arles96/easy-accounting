@@ -25,7 +25,7 @@ class Partidas extends React.Component {
     super(props);
     const { match } = this.props;
     const { params } = match;
-    const { id } = params;
+    const { id, num } = params;
     this.state = {
       idEjercicio: id,
       nombre_cuenta: "",
@@ -33,13 +33,18 @@ class Partidas extends React.Component {
       tipo: "Debe",
       codigo_cuenta: "",
       descripcion_cuenta: "",
-      contador: contadorPartida,
+      contador: num,
       fecha: new Date().toISOString(),
       descripcion_partida: "",
       validar: false,
       data_debe: [],
       data_haber: [],
+      texto: ""
     };
+  }
+
+  componentDidMount() {
+    console.log()
   }
 
   handlerCuentaNombre = (event) => {
@@ -67,32 +72,40 @@ class Partidas extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    if (this.state.tipo === "Debe") {
-      this.state.data_debe.push({
-        idAccount: this.state.codigo_cuenta,
-        numberAccount: contadorPartida,
-        nameAccount: this.state.nombre_cuenta,
-        money: parseInt(this.state.cantidad, 10),
-        description: this.state.descripcion_cuenta,
+    if(this.state.nombre_cuenta !== "Código no encontrado"){
+      if (this.state.tipo === "Debe") {
+        this.state.data_debe.push({
+          idAccount: this.state.codigo_cuenta,
+          numberAccount: contadorPartida,
+          nameAccount: this.state.nombre_cuenta,
+          money: parseInt(this.state.cantidad, 10),
+          description: this.state.descripcion_cuenta,
+        });
+      } else {
+        this.state.data_haber.push({
+          idAccount: this.state.codigo_cuenta,
+          numberAccount: contadorPartida,
+          nameAccount: this.state.nombre_cuenta,
+          money: parseInt(this.state.cantidad, 10),
+          description: this.state.descripcion_cuenta,
+        });
+      }
+  
+      this.setState({
+        nombre_cuenta: "",
+        cantidad: "",
+        tipo: "Debe",
+        codigo_cuenta: "",
+        descripcion_cuenta: "",
+        validar: false,
       });
     } else {
-      this.state.data_haber.push({
-        idAccount: this.state.codigo_cuenta,
-        numberAccount: contadorPartida,
-        nameAccount: this.state.nombre_cuenta,
-        money: parseInt(this.state.cantidad, 10),
-        description: this.state.descripcion_cuenta,
-      });
+      this.setState({
+        validar:true,
+        texto: "El código de la cuenta no existe"
+      })
     }
-
-    this.setState({
-      nombre_cuenta: "",
-      cantidad: "",
-      tipo: "Debe",
-      codigo_cuenta: "",
-      descripcion_cuenta: "",
-      validar: false,
-    });
+    
   };
 
   handleSubmitPartida = (event) => {
@@ -111,7 +124,7 @@ class Partidas extends React.Component {
     if (acum_haber === acum_debe && acum_haber !== 0 && acum_debe !== 0) {
       addAccountOperation({
         idExercise: this.state.idEjercicio,
-        number: contadorPartida,
+        number: this.state.contador,
         description: this.state.descripcion_partida,
         operationDate: this.state.fecha,
         arrayCreditAccounts: this.state.data_haber,
@@ -139,6 +152,7 @@ class Partidas extends React.Component {
     } else {
       this.setState({
         validar: true,
+        texto: "El debe y el haber no cuadra"
       });
     }
   };
@@ -167,7 +181,7 @@ class Partidas extends React.Component {
       <div>
         <Header />
         <Container className="mt--8" fluid>
-          {this.state.validar ? <Alerta /> : ""}
+          {this.state.validar ? <Alerta mensaje={this.state.texto} /> : ""}
           <Row>
             <Col className="order-xl-1 " xl="">
               <Card className="bg-light shadow">
@@ -483,6 +497,7 @@ class Partidas extends React.Component {
                               type="textarea"
                               value={this.state.descripcion_cuenta}
                               onChange={this.handlerCuentaDescripcion}
+                              required
                             />
                           </FormGroup>
                         </Col>

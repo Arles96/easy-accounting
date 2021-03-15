@@ -73,7 +73,7 @@ class Admin extends React.Component {
           />
           <Switch>
             {this.getRoutes(routes)}
-            <Route path={"/admin/partidas/:id"} component={Partidas} />
+            <Route path={"/admin/partidas/:id/:num"} component={Partidas} />
             <Route path={"/admin/resultados/:id"} component={Resultados} />
             <Route
               path={"/admin/listar-partida/:id"}

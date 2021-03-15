@@ -45,9 +45,9 @@ class ListarPartidas extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {partida.arrayCreditAccounts.map((cuenta, index) => (
+              {partida.arrayDebitAccounts.map((cuenta, index) => (
                 <>
-                  <tr key={"filaCredito" + index + " " + cuenta.nameAccount}>
+                  <tr key={"filaDebito" + index + " " + cuenta.nameAccount}>
                     <td>{cuenta.nameAccount}</td>
                     <td className="left-border-cell">
                       {toPisto(cuenta.money)}
@@ -56,7 +56,7 @@ class ListarPartidas extends React.Component {
                   </tr>
                   {cuenta.description ? (
                     <tr
-                      key={"filaCreditoDesc" + index + " " + cuenta.nameAccount}
+                      key={"filaDebitoDesc" + index + " " + cuenta.nameAccount}
                     >
                       <td>{cuenta.description}</td>
                       <td></td>
@@ -67,16 +67,16 @@ class ListarPartidas extends React.Component {
                   )}
                 </>
               ))}
-              {partida.arrayDebitAccounts.map((cuenta, index) => (
+              {partida.arrayCreditAccounts.map((cuenta, index) => (
                 <>
-                  <tr key={"filaDebito" + index + " " + cuenta.nameAccount}>
+                  <tr key={"filaCredito" + index + " " + cuenta.nameAccount}>
                     <td>{cuenta.nameAccount}</td>
                     <td className="left-border-cell"></td>
                     <td>{toPisto(cuenta.money)}</td>
                   </tr>
                   {cuenta.description ? (
                     <tr
-                      key={"filaDebitoDesc" + index + " " + cuenta.nameAccount}
+                      key={"filaCreditoDesc" + index + " " + cuenta.nameAccount}
                     >
                       <td>{cuenta.description}</td>
                       <td></td>

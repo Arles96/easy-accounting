@@ -531,5 +531,5 @@ export const catalogoCuentas = (code) => {
   ];
 
   const resultado = cuentas.filter((cuenta) => cuenta.codigo_cuenta === code);
-  return resultado[0] ? resultado[0].nombre_cuenta : "No existe XD";
+  return resultado[0] ? resultado[0].nombre_cuenta : "Código no encontrado";
 };
