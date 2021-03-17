@@ -176,19 +176,12 @@ class Tables extends React.Component {
             Balance General
           </Button>
         </Container>
-        <Container fluid className="botones-impresion">
-
-
-          <Button color="danger" size="md">
-            Exportar PDF
-          </Button>
-        </Container>
         <Container responsive>
           <div className="card-grid">
             {
               {
                 1: <Table id='CuentasT'>
-                  <div size="md">
+                  <div size="md" className="d-flex justify-content-center">
                     <ReactHTMLTableToExcel size="md"
                       id="test-table-xls-button"
                       className="btn btn-info btn-md"
@@ -198,12 +191,14 @@ class Tables extends React.Component {
                       buttonText="Exportar Excel"
                     />
                   </div>
-                  {this.state.datosTabla.map((datosTabla) => (
-                    <TablaT
-                      key={datosTabla.nameAccount + "tt"}
-                      datosTabla={datosTabla}
-                    />
-                  ))}
+                  <div className="table-grid">
+                    {this.state.datosTabla.map((datosTabla) => (
+                      <TablaT
+                        key={datosTabla.nameAccount + "tt"}
+                        datosTabla={datosTabla}
+                      />
+                    ))}
+                  </div>
                 </Table>
                 ,
                 2: (

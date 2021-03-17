@@ -28,7 +28,7 @@ const TablaT = ({ datosTabla }) => {
         </CardHeader>
         <Table responsive className="tabla-t">
           <thead>
-            <tr>
+            <tr style={{"backgroundColor": "white"}}>
               <th scope="col" />
               <th scope="col">Débito</th>
               <th scope="col">Crédito</th>
@@ -37,7 +37,7 @@ const TablaT = ({ datosTabla }) => {
           </thead>
           <tbody>
             {rows.map((fila, index) => (
-              <tr key={"fila" + index + " " + nameAccount}>
+              <tr key={"fila" + index + " " + nameAccount} style={{"backgroundColor": "white"}}>
                 {fila.debit ? (
                   <>
                     <td>{`part# ${fila.debit.numberItem}`}</td>
@@ -65,7 +65,7 @@ const TablaT = ({ datosTabla }) => {
               </tr>
             ))}
             {rows.length > 1 ? (
-              <tr className="bottom-t">
+              <tr className="bottom-t" style={{"backgroundColor": "white"}}>
                 <td />
                 {subtotalDebit > 0 ? (
                   <td className="center-left-td">{toPisto(subtotalDebit)}</td>
@@ -82,7 +82,7 @@ const TablaT = ({ datosTabla }) => {
             ) : (
               <></>
             )}
-            <tr>
+            <tr style={{"backgroundColor": "white"}}>
               {sectionAccount === "debit" ? (
                 <>
                   <td className="total-t" />
@@ -96,7 +96,7 @@ const TablaT = ({ datosTabla }) => {
                 <>
                   <td />
                   <td />
-                  <td className="total-t">{`Saldos: ${toPisto(total)}`}</td>
+                  <td className="center-right-td total-t">{`Saldos: ${toPisto(total)}`}</td>
                   <td className="total-t" />
                 </>
               )}
