@@ -20,15 +20,29 @@ import React from "react";
 
 // reactstrap components
 import { Container, Row, Col, Nav, NavItem, NavLink } from "reactstrap";
+import UNAHLogo from "assets/img/logos/UNAH-CURC.png";
+import UNITECLogo from "assets/img/logos/UNITEC.png";
 
 class Footer extends React.Component {
   render() {
     return (
       <footer className="footer">
+        <div className="d-flex w-100 justify-content-between">
+            <img
+              alt="UNAH-CURC"
+              className="logos"
+              src={UNAHLogo}
+            />
+            <img
+              alt="UNITEC"
+              className="logos"
+              src={UNITECLogo}
+            />
+          </div>
         <Row className="align-items-center justify-content-xl-between">
           <Col xl="6">
             <div className="copyright text-center text-xl-left text-muted">
-              © 2018{" "}
+              © 2021{" "}
               <a
                 className="align-items-center justify-content-xl-between"
               >

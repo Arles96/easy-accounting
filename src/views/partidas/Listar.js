@@ -50,8 +50,8 @@ class Listar extends React.Component {
       <>
         <div>
           <Header />
-          <Container className="mt--8" fluid>
-          <Button
+          <Container responsive className="botones-resultados">
+            <Button
               color="default"
               onClick={() =>
                 history.push(
@@ -73,6 +73,9 @@ class Listar extends React.Component {
             >
               Mostrar Resultados
             </Button>
+          </Container>
+
+          <Container responsive className="mt--5" fluid>
             {this.state.partidas.map((partida) => (
               <ListarPartida partida={partida} />
             ))}
