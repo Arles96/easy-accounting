@@ -18,7 +18,7 @@
 import React from "react";
 
 // reactstrap components
-import { Container, Button, TabContent, TabPane, Table } from "reactstrap";
+import { Card, Container, Button, TabContent, TabPane, Table } from "reactstrap";
 // core components
 import Header from "components/Headers/Header.js";
 import TablaT from "../../components/resultados/TablaT";
@@ -181,24 +181,26 @@ class Tables extends React.Component {
             {
               {
                 1: <Table id='CuentasT'>
-                  <div size="md" className="d-flex justify-content-center">
-                    <ReactHTMLTableToExcel size="md"
-                      id="test-table-xls-button"
-                      className="btn btn-info btn-md"
-                      table="CuentasT"
-                      filename="cuentas-t"
-                      sheet="tablexls"
-                      buttonText="Exportar Excel"
-                    />
-                  </div>
-                  <div className="table-grid">
-                    {this.state.datosTabla.map((datosTabla) => (
-                      <TablaT
-                        key={datosTabla.nameAccount + "tt"}
-                        datosTabla={datosTabla}
+                  <Card className="table-card">
+                    <div size="md" className="d-flex justify-content-center">
+                      <ReactHTMLTableToExcel size="md"
+                        id="test-table-xls-button"
+                        className="btn btn-info btn-md"
+                        table="CuentasT"
+                        filename="cuentas-t"
+                        sheet="cuentas-t"
+                        buttonText="Exportar Excel"
                       />
-                    ))}
-                  </div>
+                    </div>
+                    <div className="table-grid">
+                      {this.state.datosTabla.map((datosTabla) => (
+                        <TablaT
+                          key={datosTabla.nameAccount + "tt"}
+                          datosTabla={datosTabla}
+                        />
+                      ))}
+                    </div>
+                  </Card>
                 </Table>
                 ,
                 2: (

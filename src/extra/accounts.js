@@ -5,7 +5,7 @@ module.exports = {
         ['111', 'Efectivo y Equivalentes de Efectivo', 'activo'],
         ['1111', 'Caja', 'activo'],
         ['1112', 'Caja Chica', 'activo'],
-        ['1113', 'Bancos Ahorro', 'activo'],
+        ['1113', 'Bancos Cuenta Cheques', 'activo'],
         ['1114', 'Depósitos a Plazo', 'activo'],
         ['1115', 'Valores Negociables o Bonos', 'activo'],
         ['112', 'Inversiones  ', 'activo'],
@@ -143,6 +143,10 @@ module.exports = {
             "Descuento Sobre Compras","Cuentas de Ingresos"
         ],
         [
+            "4007",
+            "Ingresos por Servicios","Cuentas de Ingresos"
+        ],
+        [
             "5",
             "Cuentas de Costos y Gastos", "Cuentas de Costos y Gastos"
         ],
@@ -172,11 +176,15 @@ module.exports = {
         ],
         [
             "5007",
-            "Rebajas Sobre Ventas", "Cuentas de Costos y Gastos"
+            "Gastos Financieros", "Cuentas de Costos y Gastos"
         ],
         [
             "5008",
-            "Descuentos Sobre Ventas", "Cuentas de Costos y Gastos"
+            "Gastos de Venta", "Cuentas de Costos y Gastos"
+        ],
+        [
+            "6000",
+            "Impuesto Sobre Venta", "Cuentas de Costos y Gastos"
         ]
     ]
-}
+}//

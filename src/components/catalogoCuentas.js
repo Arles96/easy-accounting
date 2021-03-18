@@ -22,7 +22,7 @@ export const catalogoCuentas = (code) => {
     },
     {
       codigo_cuenta: "1113",
-      nombre_cuenta: "Bancos Ahorro",
+      nombre_cuenta: "Bancos Cuenta Cheques",
     },
     {
       codigo_cuenta: "1114",
@@ -493,6 +493,10 @@ export const catalogoCuentas = (code) => {
       nombre_cuenta: "Descuento Sobre Compras",
     },
     {
+      codigo_cuenta: "4007",
+      nombre_cuenta: "Ingresos por Servicios",
+    },
+    {
       codigo_cuenta: "5",
       nombre_cuenta: "Cuentas de Costos y Gastos",
     },
@@ -520,13 +524,19 @@ export const catalogoCuentas = (code) => {
       codigo_cuenta: "5006",
       nombre_cuenta: "Gastos de Administración",
     },
+
     {
       codigo_cuenta: "5007",
-      nombre_cuenta: "Rebajas Sobre Ventas",
+      nombre_cuenta: "Gastos Financieros",
     },
+
     {
       codigo_cuenta: "5008",
-      nombre_cuenta: "Descuentos Sobre Ventas",
+      nombre_cuenta: "Gastos de Venta",
+    },
+    {
+      codigo_cuenta: "6000",
+      nombre_cuenta: "Impuesto Sobre La Renta",
     },
   ];
 

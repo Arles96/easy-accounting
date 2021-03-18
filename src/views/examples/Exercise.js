@@ -95,6 +95,7 @@ class Exercise extends React.Component {
     }
 
     render() {
+        const { history } = this.props;
         return (
             <>
                 <Header />
@@ -195,7 +196,11 @@ class Exercise extends React.Component {
                                                     <td>{eje.doc.description}</td>
                                                     <td><Button
                                                         color="info"
-                                                        href={`/admin/listar-partida/${eje.id}`}
+                                                        onClick={() =>
+                                                            history.push(
+                                                              `/admin/listar-partida/${eje.id}`
+                                                            )
+                                                          }
                                                         size="med"
                                                     >
                                                         Listar
