@@ -494,10 +494,10 @@ export const generateStatementofIncome = (idExercise) => {
           name: 'Impuestos',
           title: true,
         });
-        // Impuesto Sobre Venta
+        // Impuesto sobre la renta
         const taxRent = utilityBeforeTax * percentageTaxRent;
         result.push({
-          name: 'Impuesto Sobre Venta',
+          name: 'Impuesto sobre la Renta',
           col3: taxRent,
         });
         // Impuesto solidario

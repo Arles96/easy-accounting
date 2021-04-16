@@ -536,7 +536,7 @@ export const catalogoCuentas = (code) => {
     },
     {
       codigo_cuenta: "6000",
-      nombre_cuenta: "Impuesto Sobre Venta",
+      nombre_cuenta: "Impuesto Sobre La Renta",
     },
   ];
 
